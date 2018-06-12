@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.topbar')
 
 @section('content')
 <div class="container">
@@ -38,4 +38,10 @@
         </div>
     </div>
 </div>
+
+{!! Form::open() !!}
+{!! Form::label('title', 'Title:') !!}
+{!! Form::text('title', null, array('class' => 'form-control')) !!}
+{!! Form::close() !!}
+
 @endsection
