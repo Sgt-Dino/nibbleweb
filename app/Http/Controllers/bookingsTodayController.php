@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bookings;
 use DB;
-class bookingsController extends Controller
+class bookingsTodayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class bookingsController extends Controller
      */
     public function index()
     {        
-        $bookingVar= DB::table('bookingrequest')
+        $bookingTodayVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
-            ->select('bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
-            ->ORDERBY('bookingrequest.date')
+            ->select('bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
+            ->where('bookingrequest.date','=','2018-04-30')
             ->get();
-        return view('bookings.index', ['bookingVar'=>$bookingVar]);
+        return view('home', ['bookingTodayVar'=>$bookingTodayVar]);
     }
 
     /**
