@@ -10,16 +10,31 @@
 
                     <div class="panel-body">
 
-                        our form
-                        {!! Form:open(array('route'=>'food.store')) !!}
+                        {!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
-                                {!! Form::label('food','Add Food') !!}
+                                {!! Form::label('food','Add Food name') !!}
                                 {!! Form::text('food',null,['class'=>'form-control']) !!}
+                            </div>
+
+                            <div class="form-group">
+                                {!! Form::label('Price','Add Cost') !!}
+                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
+                            </div>
+
+                            <div class="form-group">
+                                {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
                             </div>
                         {!! Form::close() !!}
                     </div>
                 </div>
-                errors
+
+                @if($errors->has())
+                <ul class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                    <li>{{error}}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
 
         </div>

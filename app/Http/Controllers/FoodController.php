@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Menu;
+use App\Food;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -36,7 +36,7 @@ class FoodController extends Controller
     {
         //
 
-        return view('Menu.addFood');
+        return view('menu.create');
     }
 
     /**

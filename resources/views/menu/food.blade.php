@@ -18,15 +18,14 @@
                             </tr>
 
                             @foreach($foods as $key =>$value)
-                                <tr class="post{{$value->menucategoryid}}">
+                                <tr>
                                     <td>{{$value->itemname}}</td>
                                     <td>{{$value->name}}</td>
                                     <td>{{$value->itemprice}}</td>
                                     <td>
                                         <a href="#" class=" btn btn-small btn-info" data-itemname={{"$value->itemname"}} data-name={{"$value->name"}} data-itemprice={{$value->itemprice}}">Edit</a>
 
-
-                                        {{--<button type ='Button' class="btn btn-sm btn-success">Edit</button>--}}
+                                    {{--<button type ='Button' class="btn btn-sm btn-success">Edit</button>--}}
                                 </tr>
                             @endforeach
                         </table>
@@ -36,5 +35,5 @@
             </div>
         </div>
     </div>
-    {{ link_to_route('food.create','Add new menuitem',null,['class'=>'btn btn-primary']) }}
+    //   {{ link_to_route('food.create','Add new menuitem',null,['class'=>'btn btn-primary']) }}
 @endsection
