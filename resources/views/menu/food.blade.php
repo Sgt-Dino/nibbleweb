@@ -29,11 +29,11 @@
                                 </tr>
                             @endforeach
                         </table>
+                        {{ link_to_route('food.create','Add new menu item',null,['class'=>'btn btn-primary']) }}
                         <button type ='Button' class="btn btn-sm btn-success">Add</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    //   {{ link_to_route('food.create','Add new menuitem',null,['class'=>'btn btn-primary']) }}
 @endsection
