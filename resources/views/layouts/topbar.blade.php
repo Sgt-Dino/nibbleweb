@@ -46,7 +46,7 @@
               <li><a href="#">Specials</a></li>
             </ul>
           </li>
-          <li><a href="#">Profile</a></li>
+          <li><a href="profile">Profile</a></li>
         </ul>        
 </div>
 

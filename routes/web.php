@@ -24,4 +24,8 @@ Route::resource('booking','bookingsController');
 Route::resource('food','FoodController');
 
 Route::resource('category','CategoryController');
+
+Route::resource('profile','ProfileController');
+
+Route::resource('profile','ProfileController');
 //Route::resource('category','CategoryController');

@@ -12,11 +12,21 @@
 
                         {!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
-                                {!! Form::label('food','Add Food name') !!}
+                                {!! Form::label('food','Add Food Name') !!}
                                 {!! Form::text('food',null,['class'=>'form-control']) !!}
+                            </div>                    
+
+                             <div class="form-group">
+                                {!! Form::label('Price','Add Item Description') !!}
+                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
                             </div>
 
-                            <div class="form-group">
+                               <div class="form-group">
+                                {!! Form::label('Price','Add Menu Category ID') !!}
+                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
+                            </div>
+
+                             <div class="form-group">
                                 {!! Form::label('Price','Add Cost') !!}
                                 {!! Form::text('Price',null,['class'=>'form-control']) !!}
                             </div>

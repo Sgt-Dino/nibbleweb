@@ -1,5 +1,3 @@
-
-@extends('layouts.sidebar')
 @extends('layouts.topbar')
 @section('content')
 <div class="container">
