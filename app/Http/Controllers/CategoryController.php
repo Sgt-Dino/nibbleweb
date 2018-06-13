@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Food;
+use App\Category;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
-class FoodController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class FoodController extends Controller
         return view('menu.food', ['foods'=>$foods]);
         */
         
-         $foods = Food::all();
-         return view('menu.food',compact('foods'));
+         $category = Category::all();
+         return view('menu.category',compact('category'));
          
 
     }
@@ -41,7 +41,7 @@ class FoodController extends Controller
     {
         //
 
-        return view('menu.create');
+    
     }
 
     /**

@@ -35,14 +35,14 @@
 
 <div id="nav">
         <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Bookings</a></li>
+          <li><a href="home">Home</a></li>
+          <li><a href="booking">Bookings</a></li>
           <li><a href="#">Reports</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Food</a></li>
-              <li><a href="#">Category</a></li>
+              <li><a href="food">Food</a></li>
+              <li><a href="category">Category</a></li>
               <li><a href="#">Specials</a></li>
             </ul>
           </li>
