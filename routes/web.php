@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('booking','bookingsController');
 
-Route::resource('booking','bookingsController');
 
 Route::resource('food','FoodController');
 
