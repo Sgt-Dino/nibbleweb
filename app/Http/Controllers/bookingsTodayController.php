@@ -17,7 +17,7 @@ class bookingsTodayController extends Controller
         $bookingTodayVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
-            ->where('bookingrequest.date','=','2018-04-30')
+            ->where('bookingrequest.date','=','2018-06-14')
             ->get();
         return view('home', ['bookingTodayVar'=>$bookingTodayVar]);
     }

@@ -4,19 +4,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
+                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    You are logged in!
+            <div class="panel panel-default">
+                <div class="panel-heading">Bookings For Today</div>
+
+                <div class="panel-body">
+                   
+
+                    
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -25,7 +29,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nibble</div>
+                <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
                     Welcome to Nibble !
@@ -53,13 +57,13 @@
                         <th>Action</th>
                     </tr>
 
-                    @foreach($bookingTodayVar as $Bookings)
+                    @foreach($bookingTodayVar as $BookingsToday)
                     <tr>
-                    <td>{{$Bookings->time}}</td>
-                    <td>{{$Bookings->firstname}}</td>
-                    <td>{{$Bookings->phone}}</td>
-                    <td>{{$Bookings->numofguests}}</td>                    
-                    <td>{{$Bookings->status}}</td>
+                    <td>{{$BookingsTodayokings->time}}</td>
+                    <td>{{$BookingsToday->firstname}}</td>
+                    <td>{{$BookingsToday->phone}}</td>
+                    <td>{{$BookingsToday->numofguests}}</td>                    
+                    <td>{{$BookingsToday->status}}</td>
                     <td>
                         <button type ='Button' class="btn btn-sm btn-success">Check in</button>
                     </tr>
