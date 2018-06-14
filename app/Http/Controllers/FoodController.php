@@ -7,6 +7,7 @@ use App\Food;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
+use App\Http\Requests\FoodRequest;
 class FoodController extends Controller
 {
     /**
@@ -39,8 +40,6 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
-
         return view('menu.create');
     }
 
@@ -50,9 +49,10 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FoodRequest $request)
     {
-        //
+        Food::create($request->all());
+        return redirect('/food')->with('message','Item has been added succesfully');
     }
 
     /**

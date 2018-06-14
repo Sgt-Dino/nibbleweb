@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://github.com/laravel/laravel">Click your pick</a>
+                    <a>Click your pick</a>
                 </div>
             </div>
         </div>

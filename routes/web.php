@@ -27,5 +27,5 @@ Route::resource('category','CategoryController');
 
 Route::resource('profile','ProfileController');
 
-Route::resource('profile','ProfileController');
+//Route::resource('specials','ProfileController');
 //Route::resource('category','CategoryController');

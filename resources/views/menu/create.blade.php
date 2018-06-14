@@ -12,23 +12,23 @@
 
                         {!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
-                                {!! Form::label('food','Add Food Name') !!}
-                                {!! Form::text('food',null,['class'=>'form-control']) !!}
+                                {!! Form::label('itemname','Add Food Name') !!}
+                                {!! Form::text('itemname',null,['class'=>'form-control']) !!}
                             </div>                    
 
                              <div class="form-group">
-                                {!! Form::label('Price','Add Item Description') !!}
-                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
+                                {!! Form::label('itemdescription','Add Item Description') !!}
+                                {!! Form::text('itemdescription',null,['class'=>'form-control']) !!}
                             </div>
 
-                               <div class="form-group">
-                                {!! Form::label('Price','Add Menu Category ID') !!}
-                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
+                            <div class="form-group">
+                                {!! Form::label('menucategoryid','Add Menu Category ID') !!}
+                                {!! Form::text('menucategoryid',null,['class'=>'form-control']) !!}
                             </div>
 
                              <div class="form-group">
-                                {!! Form::label('Price','Add Cost') !!}
-                                {!! Form::text('Price',null,['class'=>'form-control']) !!}
+                                {!! Form::label('itemprice','Add Cost') !!}
+                                {!! Form::text('itemprice',null,['class'=>'form-control']) !!}
                             </div>
 
                             <div class="form-group">

@@ -24,7 +24,11 @@ class FoodRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'itemname' => 'required',
+            'itemdescription' => 'required',
+            'itemprice' => 'required',
+            'menucategoryid' => 'required',
+            'active'
         ];
     }
 }
