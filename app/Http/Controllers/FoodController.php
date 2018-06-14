@@ -18,14 +18,14 @@ class FoodController extends Controller
     public function index()
     {
         //12-06
-        /*
+        
         $foods = DB::table('menuitem')
             ->join('menucategory', 'menucategory.menucategoryid', '=', 'menuitem.menucategoryid')
             ->select('menuitem.itemname', 'menucategory.name', 'menuitem.itemprice')
             ->get();
         
         return view('menu.food', ['foods'=>$foods]);
-        */
+        
         
          $foods = Food::all();
          return view('menu.food',compact('foods'));
@@ -61,9 +61,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Food $food)
     {
-        //
+        return view('menu.show',compact('food'));
     }
 
     /**
@@ -72,9 +72,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Food $food)
     {
-        //
+        return view('menu.edit',compact('food'));
     }
 
     /**
@@ -84,10 +84,10 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FoodRequest $request, Food $food)
     {
-        //
-
+        $food->update($request->all());
+        return redirect()->route('menu.food')->with('message','item has been updated successfully');
         
     }
 
@@ -97,8 +97,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Food $food)
     {
-        //
+        $food->delete();
+        return redirect()->route('menu.food')->with('message','item has been deleted successfully');
     }
 }

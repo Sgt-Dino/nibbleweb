@@ -10,22 +10,22 @@
 
                     <table class="table table-hover table-striped">
                     <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Guest Name</th>
-                        <th>Phone</th>
-                        <th>No of Guests</th>
-                        <th>Action</th>
+                        <th class="text-left">Date</th>
+                        <th class="text-centre">Time</th>
+                        <th class="text-center">Guest Name</th>
+                        <th class="text-center">Phone</th>
+                        <th class="text-center">No of Guests</th>
+                        <th class="text-center">Action</th>
                     </tr>
 
                     @foreach($bookingVar as $Bookings)
                     <tr>
-                    <td align="right">{{$Bookings->date}}</td>
-                    <td align="right">{{$Bookings->time}}</td>
-                    <td>{{$Bookings->firstname}}</td>
-                    <td align="right">{{$Bookings->phone}}</td>
-                    <td align="right">{{$Bookings->numofguests}}</td>
-                    <td style="padding-right: 20px">
+                    <td align="left">{{$Bookings->date}}</td>
+                    <td align="centre">{{$Bookings->time}}</td>
+                    <td class="text-center">{{$Bookings->firstname}}</td>
+                    <td class="text-center">{{$Bookings->phone}}</td>
+                    <td class="text-center">{{$Bookings->numofguests}}</td>
+                    <td align="right" style="padding-right: 20px">
                         <button type ='button' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
                         <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger">Decline</button>
                     </tr>
