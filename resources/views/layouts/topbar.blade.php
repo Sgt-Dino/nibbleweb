@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Not using this now -->
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -43,7 +43,7 @@
             <ul class="dropdown-menu">
               <li><a href="food">Food</a></li>
               <li><a href="category">Category</a></li>
-              <li><a href="#">Specials</a></li>
+              <li><a href="specials">Specials</a></li>
             </ul>
           </li>
           <li><a href="profile">Profile</a></li>

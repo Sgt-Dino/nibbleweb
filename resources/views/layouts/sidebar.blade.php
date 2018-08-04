@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>         <!-- Not using this now -->
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="style4.css">
+
+  
     </head>
     <body>
 
@@ -77,6 +79,8 @@
                 </ul>
             </nav>
 
+
+
             <!-- Page Content Holder -->
             <div id="content">
 
@@ -98,10 +102,52 @@
                                 <li><a href="#">Logout</a></li>
                             </ul>
                         </div>
+
+                        
                     </div>
                 </nav>
 
+<!-- Booking request -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Booking Requests</div>
+
+                <div class="panel-body">
+
+                    <table class="table table-hover table-striped">
+                    <tr>
+                        <th class="text-left">Date</th>
+                        <th class="text-centre">Time</th>
+                        <th class="text-center">Guest Name</th>
+                        <th class="text-center">Phone</th>
+                        <th class="text-center">No of Guests</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+
+                    @foreach($bookingVar as $Bookings)
+                    <tr>
+                    <td align="left">{{$Bookings->date}}</td>
+                    <td align="centre">{{$Bookings->time}}</td>
+                    <td class="text-center">{{$Bookings->firstname}}</td>
+                    <td class="text-center">{{$Bookings->phone}}</td>
+                    <td class="text-center">{{$Bookings->numofguests}}</td>
+                    <td align="right" style="padding-right: 20px">
+                        <button type ='button' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
+                        <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger">Decline</button>
+                    </tr>
+                    @endforeach
+                    </table>
+                    </div>
             </div>
+        </div>
+    </div>
+</div>
+
+            </div> <!-- id="content" -->
+
+     
         </div>
 
 

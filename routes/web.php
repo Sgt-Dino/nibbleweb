@@ -19,8 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::resource('home', 'HomeController@index');
-
 Route::resource('booking','bookingsController');
 
 Route::resource('food','FoodController');
@@ -29,5 +27,6 @@ Route::resource('category','CategoryController');
 
 Route::resource('profile','ProfileController');
 
-//Route::resource('specials','ProfileController');
+//Route::resource('home', 'HomeController@index');
+Route::resource('specials','SpecialsController');
 //Route::resource('category','CategoryController');
