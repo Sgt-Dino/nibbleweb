@@ -149,17 +149,20 @@
                                     <td>{{$food->itemname}}</td>
                                     <td>{{$food->name}}</td>
                                     <td>{{$food->itemprice}}</td>
-                                   {{-- <td>{{ link_to_route('food.show',$food->itemname,[$food->itemname]) }}</td> --}}
+                                  
                                     <td align="right">
-                                    {!! Form::open(array('route'=>['food.destroy',$food->itemname],'method'=>'DELETE')) !!}
-                                            {{ link_to_route('food.edit','Edit',[$food->itemname],['class'=>'btn btn-primary']) }}
-                                            |
 
-                                            {!! Form::button('Delete',['class'=>'btn btn-danger','type'=>'submit']) !!}
-                                        {!! Form::close() !!}
+                                    <a href="{{ route('menu.food.edit',$food->menuitemid) }}"><button class="btn btn-sm btn-primary">Edit</button></a>
 
-                                        {{--<a href="#" class=" btn btn-sm btn-info" data-itemname={{"$value->itemname"}} data-name={{"$value->name"}} data-itemprice={{$value->itemprice}}">Edit</a>
-                                        <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger">Delete</button>--}}
+                                    <form action="{{ route('menu.food.destroy', ['id' => $food->menuitemid]) }}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <div class="form-group">
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                    </div>
+                                    </form>
+
+                                            
                                     </td>
                                 </tr>
                             @endforeach

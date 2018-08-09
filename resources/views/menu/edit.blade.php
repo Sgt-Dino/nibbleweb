@@ -8,8 +8,8 @@
                     <div class="panel-heading">Update Item</div>
 
                     <div class="panel-body">
-
-                        {!! Form::model($foods,array('route'=>['food.update',$foods->id],'method'=>'PUT')) !!}
+                    
+                        {!! Form::model($food,['method'=>'POST','action'=>['FoodController@update',$food->id]]) !!}
                         <div class="form-group">
                                 {!! Form::label('itemname','Food Name') !!}
                                 {!! Form::text('itemname',null,['class'=>'form-control']) !!}
@@ -30,15 +30,28 @@
                                 {!! Form::text('itemprice',null,['class'=>'form-control']) !!}
                             </div>
 
+
+                            
                             <div class="form-group">
-                                {!! Form::button('Update',['type'=>'submit','class'=>'btn btn-primary']) !!}
+                                {!! Form::submit('Update',['class'=>'btn btn-primary']) !!}
                             </div>
+
+
+
+
+                            <form action="{{ route('menu.food.update', ['id' => $food->menuitemid]) }}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
+                                    <div class="form-group">
+                                    <button type="submit" class="btn btn-danger">PUT</button>
+                                    </div>
+                                    </form>
                         {!! Form::close() !!}
 
                     </div>
                 </div>
 
-                @if($errors->has())
+                @if ( count( $errors ) > 0 )
                     <ul class="aler alert-danger">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
