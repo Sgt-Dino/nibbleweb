@@ -87,7 +87,7 @@ class FoodController extends Controller
     public function update(FoodRequest $request, $id)
     {
 
-        $food = Food::findOrFail($id)->first();
+        $food = Food::findOrFail($id);
 
         $food->itemname = $request->get('itemname');
         $food->itemdescription = $request->get('itemdescription');

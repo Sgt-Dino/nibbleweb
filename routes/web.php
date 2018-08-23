@@ -27,7 +27,9 @@ Route::get('/edit/{id}',
 
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 
-Route::put('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
+Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
+
+Route::patch('/updateprofile/{id}', ['uses' => 'profileController@update', 'as' => 'profile.profile.update']);
 
 Route::resource('booking','bookingsController');
 
