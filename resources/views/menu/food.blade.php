@@ -151,7 +151,7 @@
                                     <td>{{$food->itemprice}}</td>
                                    {{-- <td>{{ link_to_route('food.show',$food->itemname,[$food->itemname]) }}</td> --}}
                                     <td align="right">
-                                    {!! Form::open(array('route'=>['food.destroy',$food->itemname],'method'=>'DELETE')) !!}
+                                        {!! Form::open(array('route'=>['food.destroy',$food->itemname],'method'=>'DELETE')) !!}
                                             {{ link_to_route('food.edit','Edit',[$food->itemname],['class'=>'btn btn-primary']) }}
                                             |
 

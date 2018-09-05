@@ -27,6 +27,17 @@ Route::resource('category','CategoryController');
 
 Route::resource('profile','ProfileController');
 
+Route::resource('report', 'ReportController');
+
+Route::resource('questions', 'faqController');
+
+//Route::patch('/report/chart',['uses' => 'ReportController@show', 'as' => 'reports.status.chart.show']);
+
+//Route::get('/report',function(){
+//    $bookings = Bookings::all();
+//    return view('reports/create');
+//});
+
 //Route::resource('home', 'HomeController@index');
 Route::resource('specials','SpecialsController');
 //Route::resource('category','CategoryController');
