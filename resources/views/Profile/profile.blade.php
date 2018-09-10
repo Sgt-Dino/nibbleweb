@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -121,7 +122,53 @@
                     </div>
                 </nav>
 
-                
+<!-- Profile -->  
+          
+<div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                @endif
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Profile Information</div>
+
+                    <div class="panel-body">
+                        
+                    
+                            $userId = 1;
+                            @foreach($profile as $prof)
+                                @if($prof['restaurantid'] == 1)
+                                <div class="panel-body">
+
+                        {!! Form::open(array('route'=>'profile.show', $id->$userId)) !!}
+                            <div class="form-group">
+                                {!! Form::label('restaurantname','restaurantname') !!}
+                                {!! Form::text('restaurantname',null,['class'=>'form-control']) !!}
+                            </div>                    
+
+                        {!! Form::close() !!}
+                    
+
+                                @endif
+                            @endforeach
+                        
+                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- profile -->  
+
+                 
+
+                    
+              
+
 
 <p style="visibility:hidden">This application is to be used by authrized Nibble users only. Nibble is the sole property of Skedaddle. Please contact Skedaddle for more information regarding Nibble and the use therof. The use of this application does not amdit you the right to edit or change it as you wish.</p>     
                

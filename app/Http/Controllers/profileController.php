@@ -31,7 +31,7 @@ class ProfileController extends Controller
         */
         
          $profile = Profile::all();
-         return view('profile.profile',compact('profile'));
+         return view('Profile.profile',compact('profile'));
          
 
     }
@@ -67,7 +67,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('profile.show',compact('profile'));
     }
 
     /**
@@ -78,7 +78,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::findOrFail($id);
+        return view('profile.profile',compact('profile'));
     }
 
     /**
@@ -90,7 +91,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = Profile::findOrFail($id);
+
+        $profile->restaurantname = $request->get('restaurantname');
+        $profile->phone = $request->get('phone');
+        $profile->restauranttype = $request->get('restauranttype');
+        $profile->email = $request->get('email');
+        $profile->suburb = $request->get('suburb');
+        $profile->addressline1 = $request->get('addressline1');
+        $profile->websiteurl = $request->get('websiteurl');
+        $profile->save();
+        return redirect('/profile')->with('message','item has been updated successfully');
 
         
     }

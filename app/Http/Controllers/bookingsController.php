@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bookings;
+use Auth;
 use DB;
 class bookingsController extends Controller
 {
@@ -20,9 +21,11 @@ class bookingsController extends Controller
     
     public function index()
     {        
+        $userId = Auth::id();
         $bookingVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
+            ->where('bookingrequest.restaurantid','=',$userId)
             ->ORDERBY('bookingrequest.date')
             ->get();
         return view('bookings.index', ['bookingVar'=>$bookingVar]);
