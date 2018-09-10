@@ -10,7 +10,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Nibble</title>
-
+        
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Custom CSS -->
@@ -101,8 +101,6 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
                                 @if (Auth::guest())
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -122,54 +120,159 @@
                     </div>
                 </nav>
 
-<!-- Profile -->  
-          
+
+
+
+<!-- Profile -->          
 <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
-                @if(Session::has('message'))
-                        <div class="alert alert-success">
-                            {{ Session::get('message') }}
-                        </div>
-                @endif
-
                 <div class="panel panel-default">
-                    <div class="panel-heading">Profile Information</div>
-
+                    <div class="panel-heading"><h4>Profile Information</h4></div>
                     <div class="panel-body">
-                        
-                    
-                            $userId = 1;
-                            @foreach($profile as $prof)
-                                @if($prof['restaurantid'] == 1)
-                                <div class="panel-body">
-
-                        {!! Form::open(array('route'=>'profile.show', $id->$userId)) !!}
-                            <div class="form-group">
-                                {!! Form::label('restaurantname','restaurantname') !!}
-                                {!! Form::text('restaurantname',null,['class'=>'form-control']) !!}
-                            </div>                    
-
-                        {!! Form::close() !!}
-                    
-
-                                @endif
-                            @endforeach
-                        
-                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+					<?php 
+			        $restaurantadminid = Auth::id();				            
+                    ?>
+                        @if(isset($profiles)) 
+                        @foreach ($profiles as $prof) 
+							@if($prof->id == $restaurantadminid)
+											
+						  <div class="form-group">
+							{{csrf_field()}}
+							<input name="_method" type="hidden" value="PATCH">      
+							<label>Restaurant Name</label>
+						  <div>     
+							<input type="text" readonly class="form-control" name="name" value={{$prof->restaurantname}}>
+						  </div>      
+						  </div>
+						  
+						  <div class="form-group">
+							<label>Contact</label>
+						  <div>
+							<input type="number" name="contact" class="form-control" value={{$prof->phone}}>
+						  </div>
+						  </div>
+						  
+						  <div>
+						  <label>Email</label>
+						  <div>
+						  <input type="text"  name="email" class="form-control" value={{$prof->email}}>
+						  </div>
+						  </div>
+						  </br>
+						  
+						  <div>
+							<label>Restaurant Address</label>
+						  <div>
+							<textarea name="address" class="form-control" cols="1" rows="1" >{{$prof->addressline1}}</textarea>
+						  </div>
+						  </div>
+						  </br>
+						  
+						  <div>
+						  <label>Suburb</label>
+						  <div>
+						  <input type="text"  name="suburb" class="form-control" value={{$prof->suburbid}}>
+						  </div>
+						  </div>
+						  </br>
+						  
+						  <div>
+						  <label>Website</label>
+						  <div>
+						  <input type="text"  name="website" class="form-control" value={{$prof->websiteurl}}>
+						  </div>
+						  </div>
+						  </br>
+							@endif   
+                        @endforeach
+                        @endif
+							<div class="form-group">
+							<div></div>
+							<button type="submit" class="btn btn-primary">Update</button>
+							</div>
+							</form>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- profile -->  
+    </div>
+    </br>
 
-                 
+    <!-- geolocation -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
 
-                    
-              
+               
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Location</h4></div>
+
+                    <div class="panel-body">
+
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
+
+                    <script>
+                    function myMap() {
+                    var mapProp= {
+                        center:new google.maps.LatLng(-33.9800224,25.552754100000016),
+                        zoom:5,
+                    };
+                    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                    }
 
 
+                    </script>
+                        <!--code used from www.w3schools.com HTML Geolocation API coordinates function-->
+                        <p>Click the button to get your coordinates.</p>
+                        <button class="btn btn-primary" onclick="getLocation()">Geolocate Me</button>                        
+                        <p id="demo"></p>
+                        <script>
+                        var x = document.getElementById("demo");
+                        function getLocation() {
+                        if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                        } else { 
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                        }
+
+                        function showPosition(position) {
+                        x.innerHTML = "Latitude: " + position.coords.latitude + 
+                        "<br>Longitude: " + position.coords.longitude;
+                        }
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+
+<!-- upload logo -->  
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+               
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Upload Logo</h4></div>
+
+                    <div class="panel-body">
+                        
+                    <button class="btn btn-primary" onclick="uploadLogo()">Upload</button>
+                           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- upload logo -->  
+    
+    
+    
+    
+    <!-- profile -->  
 <p style="visibility:hidden">This application is to be used by authrized Nibble users only. Nibble is the sole property of Skedaddle. Please contact Skedaddle for more information regarding Nibble and the use therof. The use of this application does not amdit you the right to edit or change it as you wish.</p>     
                
             </div>
@@ -191,5 +294,6 @@
                  });
              });
          </script>
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH5nbLi84BB3QcgwUe-0lMgQZon2C_sB4&callback=myMap"></script>
     </body>
 </html>

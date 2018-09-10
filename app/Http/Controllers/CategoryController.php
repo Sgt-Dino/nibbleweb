@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Auth;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -29,8 +30,12 @@ class CategoryController extends Controller
         
         return view('menu.food', ['foods'=>$foods]);
         */
-        
-         $category = Category::all();
+        $userId = Auth::id();
+        $category= DB::table('menucategory')
+            ->select('*')
+            ->where('menucategory.restaurantid','=',$userId)
+            ->get();
+         //$category = Category::all();
          return view('menu.category',compact('category'));
          
 
@@ -67,7 +72,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        //$food = Food::findOrFail($id);
+    }
+
+    public function getSingleCat($id)
+    {
+        $category = Category::findOrFail($id);
     }
 
     /**

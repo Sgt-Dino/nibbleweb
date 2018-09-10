@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Update Item</div>
+                    <div class="panel-heading"><h4>Update Item</h4></div>
 
                     <div class="panel-body">
                     {!! Form::open(array('action' => array('FoodController@update', $food->menuitemid))) !!}
@@ -28,18 +28,21 @@
       </div>
     </div>
 
+@foreach($categories as $cat)
+@if( $food->menucategoryid == $cat->menucategoryid )
 <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{$cat->name}}
     <span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-      <li role="presentation" class="divider"></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+	@foreach($categories as $cat)
+      <li role="presentation"><a role="menuitem" tabindex="0" href="#">{{$cat->name}}</a></li>
+	@endforeach
     </ul>
-  </div>
+</div>
 
+  @endif
+  @endforeach
+</br>
 <div class="form-group">
       <label>Item Description</label>
       <div>
@@ -78,4 +81,14 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+$(".dropdown-menu li a").click(function(){ 
+  $(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
+});
+});
+</script>
+
 @endsection

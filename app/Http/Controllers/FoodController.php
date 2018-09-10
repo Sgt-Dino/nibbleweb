@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Food;
+use App\Category;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -27,7 +28,8 @@ class FoodController extends Controller
     
         
          $foods = Food::all();
-         return view('menu.food',compact('foods'));
+         $categories = Category::all();
+         return view('menu.food',compact('foods','categories'));
          
 
     }
@@ -73,8 +75,9 @@ class FoodController extends Controller
      */
     public function edit($id)
     {
-        $food = Food::findOrFail($id);
-        return view('menu.edit',compact('food'));
+        $food = Food::findOrFail(Crypt::decrypt($id));
+        $categories = Category::all();
+        return view('menu.edit',compact('food','categories'));
     }
 
     /**

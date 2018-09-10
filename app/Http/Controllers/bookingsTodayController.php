@@ -4,22 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bookings;
-use DB;
+use Auth;
+use DB, Session, Crypt, Hash;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\BookingRequest;
+
 class bookingsTodayController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */ 
     public function index()
-    {        
+    {   
+        $userId = Auth::id();     
+        $todayDate = date("Y-m-d");
         $bookingTodayVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
-            ->select('bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
-            ->where('bookingrequest.date','=','2018-06-14')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->where('bookingrequest.date','=',$todayDate)
+            ->where('bookingrequest.status','<>','N')
+            ->ORDERBY('bookingrequest.time', 'ASC')
             ->get();
-        return view('home', ['bookingTodayVar'=>$bookingTodayVar]);
+            $bookingsCanceled= DB::table('bookingrequest')
+            ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->where('bookingrequest.date','=',$todayDate)
+            ->where('bookingrequest.status','=','N')
+            ->ORDERBY('bookingrequest.time', 'ASC')
+            ->get();
+        return view('home', ['bookingTodayVar'=>$bookingTodayVar,'bookingsCanceled'=>$bookingsCanceled]);
     }
 
     /**
@@ -75,6 +101,22 @@ class bookingsTodayController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function updateC(BookingRequest $request, $id)
+    {
+        $bookingVar = Bookings::findOrFail($id);
+        $bookingVar->accepted = $bookingVar->accepted;
+        $bookingVar->status = 'C';      
+        $bookingVar->save();
+        return redirect('/home')->with('message','item has been updated successfully');
+    }
+    public function updateM(BookingRequest $request, $id)
+    {
+        $bookingVar = Bookings::findOrFail($id);
+        $bookingVar->accepted = $bookingVar->accepted;
+        $bookingVar->status = 'M';      
+        $bookingVar->save();
+        return redirect('/home')->with('message','item has been updated successfully');
     }
 
     /**

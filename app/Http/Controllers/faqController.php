@@ -3,40 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Profile;
-use DB, Session, Crypt, Hash;
-use Illuminate\Support\Facades\Input;
+use App\Questions;
+use DB;
 
-
-class ProfileController extends Controller
+class faqController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
-        //12-06
-        /*
-        $foods = DB::table('menuitem')
-            ->join('menucategory', 'menucategory.menucategoryid', '=', 'menuitem.menucategoryid')
-            ->select('menuitem.itemname', 'menucategory.name', 'menuitem.itemprice')
+        $question=DB::table('frequently_asked_question')
+            ->select('frequently_asked_question.question', 'frequently_asked_question.answer')
+            ->orderby('frequently_asked_question.question')
             ->get();
-        
-        return view('menu.food', ['foods'=>$foods]);
-        */
-        
-         $profiles = Profile::all();
-         $subs = DB::select('select * from suburb');
-         return view('Profile.profile',compact('profiles','subs'));
-         //return view('menu.food',compact('profiles'));
-         
-
+        return view('FAQ.questions',['question'=>$question]);
     }
 
     /**
@@ -47,8 +36,6 @@ class ProfileController extends Controller
     public function create()
     {
         //
-
-    
     }
 
     /**
@@ -70,7 +57,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return view('profile.show',compact('profile'));
+        //
     }
 
     /**
@@ -81,8 +68,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = Profile::findOrFail($id);
-        return view('profile.profile',compact('profile'));
+        //
     }
 
     /**
@@ -94,19 +80,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $profile = Profile::findOrFail($id);
-
-        $profile->restaurantname = $request->get('restaurantname');
-        $profile->phone = $request->get('phone');
-        $profile->restauranttype = $request->get('restauranttype');
-        $profile->email = $request->get('email');
-        $profile->suburb = $request->get('suburb');
-        $profile->addressline1 = $request->get('addressline1');
-        $profile->websiteurl = $request->get('websiteurl');
-        $profile->save();
-        return redirect('/profile')->with('message','item has been updated successfully');
-
-        
+        //
     }
 
     /**

@@ -100,8 +100,6 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
                                 @if (Auth::guest())
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -121,15 +119,60 @@
                     </div>
                 </nav>
 
+<!-- category -->            
+<div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                @endif
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Menu Categories</div>
+
+                    <div class="panel-body">
+                        <table class="table table-hover table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th class="text-center">Update</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                            
+                            @foreach($category as $cat)
+                                <tr>
+                                    <td>{{$cat->name}}</td>
+                                    <td>{{$cat->description}}</td>
+                                  
+                                    <td align="center">
+                                    <a href=#><button class="btn btn-sm btn-primary">Edit</button></a>
+                                    </td>
+                                    <td align="center">
+                                    <form action=# method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}                                   
+                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>                                   
+                                    </form>
+                                            
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- food -->  
                 
 
 <p style="visibility:hidden">This application is to be used by authrized Nibble users only. Nibble is the sole property of Skedaddle. Please contact Skedaddle for more information regarding Nibble and the use therof. The use of this application does not amdit you the right to edit or change it as you wish.</p>     
                
             </div>
         </div>
-
-
-
 
 
         <!-- jQuery CDN -->

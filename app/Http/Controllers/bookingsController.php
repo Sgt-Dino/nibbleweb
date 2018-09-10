@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bookings;
 use Auth;
-use DB;
+use DB, Session, Crypt, Hash;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\BookingRequest;
+
 class bookingsController extends Controller
 {
     /**
@@ -24,11 +27,28 @@ class bookingsController extends Controller
         $userId = Auth::id();
         $bookingVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
-            ->select('bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->ORDERBY('bookingrequest.date')
+            ->ORDERBY('bookingrequest.date', 'ASC')
+            ->orderby('bookingrequest.time', 'ASC')
             ->get();
-        return view('bookings.index', ['bookingVar'=>$bookingVar]);
+            $bookingD= DB::table('bookingrequest')
+            ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->where('bookingrequest.accepted','=','D')
+            ->ORDERBY('bookingrequest.date', 'ASC')
+            ->orderby('bookingrequest.time', 'ASC')
+            ->get();
+            $bookingA= DB::table('bookingrequest')
+            ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->where('bookingrequest.accepted','=','A')
+            ->ORDERBY('bookingrequest.date', 'ASC')
+            ->orderby('bookingrequest.time', 'ASC')
+            ->get();
+        return view('bookings.index', ['bookingVar'=>$bookingVar,'bookingD'=>$bookingD,'bookingA'=>$bookingA]);
     }
 
     /**
@@ -81,9 +101,30 @@ class bookingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookingRequest $request, $id)
     {
-        //
+        $bookingVar = Bookings::findOrFail($id);
+
+        $bookingVar->status = $request->get('status');
+        $bookingVar->accepted = $request->get('accepted');
+        $bookingVar->save();
+        return redirect('/bookings')->with('message','item has been updated successfully');
+    }
+    public function updateA(BookingRequest $request, $id)
+    {
+        $bookingVar = Bookings::findOrFail($id);
+        $bookingVar->accepted = 'A';
+        $bookingVar->status = $bookingVar->status;      
+        $bookingVar->save();
+        return redirect('/booking')->with('message','item has been updated successfully');
+    }
+    public function updateD(BookingRequest $request, $id)
+    {
+        $bookingVar = Bookings::findOrFail($id);
+        $bookingVar->accepted = 'D';
+        $bookingVar->status = $bookingVar->status;       
+        $bookingVar->save();
+        return redirect('/booking')->with('message','item has been updated successfully');
     }
 
     /**

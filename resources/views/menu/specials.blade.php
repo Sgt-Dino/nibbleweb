@@ -100,8 +100,6 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
                                 @if (Auth::guest())
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
