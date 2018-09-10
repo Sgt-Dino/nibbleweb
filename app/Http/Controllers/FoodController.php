@@ -24,13 +24,7 @@ class FoodController extends Controller
     {
         //12-06
         
-        $foods = DB::table('menuitem')
-            ->join('menucategory', 'menucategory.menucategoryid', '=', 'menuitem.menucategoryid')
-            ->select('menuitem.itemname', 'menucategory.name', 'menuitem.itemprice')
-            ->get();
-        
-        return view('menu.food', ['foods'=>$foods]);
-        
+    
         
          $foods = Food::all();
          return view('menu.food',compact('foods'));
@@ -77,8 +71,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Food $food)
+    public function edit($id)
     {
+        $food = Food::findOrFail($id);
         return view('menu.edit',compact('food'));
     }
 
@@ -89,10 +84,17 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FoodRequest $request, Food $food)
+    public function update(FoodRequest $request, $id)
     {
-        $food->update($request->all());
-        return redirect()->route('menu.food')->with('message','item has been updated successfully');
+
+        $food = Food::findOrFail($id);
+
+        $food->itemname = $request->get('itemname');
+        $food->itemdescription = $request->get('itemdescription');
+        $food->itemprice = $request->get('itemprice');
+        $food->menucategoryid = $request->get('menucategoryid');
+        $food->save();
+        return redirect('/food')->with('message','item has been updated successfully');
         
     }
 
@@ -102,9 +104,15 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Food $food)
+    public function destroy(Food $id)
     {
+        $food = Food::findOrFail($id)->first();
         $food->delete();
-        return redirect()->route('menu.food')->with('message','item has been deleted successfully');
+        return redirect('/food')->with('message','item has been deleted successfully');
+    }
+
+    public function modify()
+    {
+        return view('menu.edit');
     }
 }
