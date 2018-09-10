@@ -33,35 +33,64 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Status Report by Month</div>
+                    {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
+
+                    {{--{!! Form::open(array('route'=>'food.store')) !!}--}}
 
                     <!-- Date Picker -->
-                    <table>
-                        <th>Start Date: <input id="startDate" width="276" /></th>
-                        <th>End Date: <input id="endDate" width="276" /></th>
+                    <table class="table">
+                        </br>
+                        <th class="text-left">Start Date: <input id="startDate" width="276" /></th>
+                        <th class="text-left">End Date: <input id="endDate" width="276" /></th>
                     </table>
                         <script>
-                            var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+                            //var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
                             $('#startDate').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome',
                                 minDate: new Date(2016, 0, 1),
-                                maxDate: function () {
+                                onSelect: function(dateText){
+                                // maxDate: function () {
                                     return $('#endDate').val();
+                                    // var startDate =$('#startDate').val();
+                                    // var endDate =$('#endDate').val();
+                                    // var status =$('#status').val();
+                                    // chart(startDate, endDate, status);
                                 }
                             });
                             $('#endDate').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome',
-                                minDate: function () {
+                                onSelect: function(dateText){
+                                // minDate: function () {
                                     return $('#startDate').val();
+                                    // var startDate =$('#startDate').val();
+                                    // var endDate =$('#endDate').val();
+                                    // var status =$('#status').val();
+                                    // chart(startDate, endDate, status);
                                 }
                             });
+//---------------------------------------------------------------------
+                            {{--function chart(criteria1, criteria2, criteria3)--}}
+                            {{--{--}}
+                                {{--$.ajax({--}}
+                                    {{--type:   'get',--}}
+                                    {{--url:    "{!!url('status-by-month')  !!}",--}}
+                                    {{--data: {startDate:criteria1, endDate:criteria2, status:criteria3},--}}
+                                    {{--success:function(data)--}}
+                                    {{--{--}}
+                                        {{--$('.status-by-month').empty().html(data);--}}
+                                    {{--}--}}
+
+                                {{--})--}}
+                            {{--}--}}
+
                         </script>
                     <!-- Date Picker -->
 
                     <div class="panel-body">
 
-                        <table class="table table-hover table-striped">
+                        <table class="table table-striped">
 
                             <th class="text-center">Status</th>
                             <th class="text-left">Date</th>
@@ -79,7 +108,13 @@
                                 </tr>
                             @endforeach
                         </table>
-                        {{--<a href="{{route('reports.status.chart.show'}}"></a><button class="btn btn-sm btn-primary">Chart</button>--}}
+                        <a href="{{route('reports.status.chart')}}"></a><button class="btn btn-sm btn-primary">Chart</button>
+
+                        {{--{{ link_to_route('/statusbymonth','chart',['class'=>'btn btn-success']) }}--}}
+
+                        {{--{{TRYING this! link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}--}}
+
+
                     </div>
                 </div>
             </div>

@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="questions">
                             <i class="glyphicon glyphicon-paperclip"></i>
                             FAQ
                         </a>
@@ -101,8 +101,6 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
                                 @if (Auth::guest())
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -130,7 +128,7 @@
                 <div class="panel-heading">Booking Requests</div>
 
                 <div class="panel-body">
-
+                    <p>Y = Confirmed, N= Canceled, P = Pending</p>
                     <table class="table table-hover table-striped">
                     <tr>
                         <th class="text-left">Date</th>
@@ -139,6 +137,7 @@
                         <th class="text-center">Phone</th>
                         <th class="text-center">No of Guests</th>
                         <th class="text-center">Action</th>
+                        <th class="text-center">Status</th>
                     </tr>
 
                     @foreach($bookingVar as $Bookings)
@@ -149,8 +148,19 @@
                     <td class="text-center">{{$Bookings->phone}}</td>
                     <td class="text-center">{{$Bookings->numofguests}}</td>
                     <td align="right" style="padding-right: 20px">
-                        <button type ='button' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
-                        <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger">Decline</button>
+                        <button type ='button' name='AcceptRequest' class="btn btn-sm btn-success" rel="tooltip" title="Accept booking request">Accept</button>
+                        <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger" rel="tooltip" title="Decline booking request">Decline</button>
+
+                        <!-- tooltip -->
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                $("[rel=tooltip]").tooltip({ placement: 'top'});
+                            });
+                        </script>
+                        <!-- tooltip -->
+
+                    </td>
+                        <td class="text-center">{{$Bookings->status}}</td>
                     </tr>
                     @endforeach
                     </table>

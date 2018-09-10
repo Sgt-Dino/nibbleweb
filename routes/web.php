@@ -38,8 +38,10 @@ Route::resource('category','CategoryController');
 Route::resource('profile','ProfileController');
 
 Route::resource('report', 'ReportController');
+Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
 
 Route::resource('questions', 'faqController');
+
 
 //Route::patch('/report/chart',['uses' => 'ReportController@show', 'as' => 'reports.status.chart.show']);
 

@@ -7,6 +7,7 @@ use App\Profile;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -30,8 +31,10 @@ class ProfileController extends Controller
         return view('menu.food', ['foods'=>$foods]);
         */
         
-         $profile = Profile::all();
-         return view('Profile.profile',compact('profile'));
+         $profiles = Profile::all();
+         $subs = DB::select('select * from suburb');
+         return view('Profile.profile',compact('profiles','subs'));
+         //return view('menu.food',compact('profiles'));
          
 
     }

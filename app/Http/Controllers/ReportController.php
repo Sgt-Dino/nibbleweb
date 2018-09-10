@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bookings;
+use Auth;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -22,20 +23,42 @@ class ReportController extends Controller
 
     public function index()
     {
+        //MUST UNDO!!!
+        $userId = Auth::id();
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->wherebetween('date', ['#startDate', '#endDate'])
             ->orderby('bookingrequest.status')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
-
-
-
-//        $report = DB::table('bookingrequest')
-//        ->join('customer', 'customer.customerid', '=', 'customerid')
-//        ->select('bookingrequest.date','bookingrequest.time', 'bookingrequest.status','bookingrequest.numofguests', 'customer.email')
-//        ->get();
-//        return view('reports/status/chart');
     }
+
+//    public function getBookingReport()
+//    {
+//        $statusBM=bookingrequest::orderBy('status')->lists('status', 'date', 'time', 'numofguests', 'customerid');
+//        return  view ('reports.status.bookingBM');
+//    }
+
+//    public function getBookingReport()
+//    {
+//        $statusBM =bookingrequest::orderBy('date');
+//        return view(reports.status.chart);
+//    }
+//
+//    public function exportStudentInfo
+//    {
+//        if ($request->ajax())
+//        {
+//            $userId = Auth::id();
+//            $status=bookingrequest::table('bookingrequest')
+//                ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+//                ->where('bookingrequest.restaurantid', '=', $userId)
+//                ->wherebetween('date', $(#startdate), ()#endate)
+//                ->orderby('bookingrequest.status')
+//                ->get();
+//        }
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -64,9 +87,16 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($chartstat)
+    public function show($request)
     {
-        return view('reports.status.bookingBM', ['chartStatus'=>$chartstat]);
+        $userId = Auth::id();
+        $request= DB::table('bookingrequest')
+            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->wherebetween('date', 'startDate', 'endDate')
+            ->orderby('bookingrequest.status')
+            ->get();
+        return view('reports.status.char', 'request');
     }
 
     /**
