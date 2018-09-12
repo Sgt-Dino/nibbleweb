@@ -66,7 +66,7 @@
                         @endif
 							<div class="form-group">
 							<div></div>
-							<button type="submit" class="btn btn-primary">Update</button>
+							<button type="submit" class="btn btn-primary" rel="tooltip" title="Update profile">Update</button>
 							</div>
 							</form>
                     </div>

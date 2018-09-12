@@ -29,13 +29,13 @@
                                     <td>{{$cat->description}}</td>
 
                                     <td align="center">
-                                    <a href=#><button class="btn btn-sm btn-primary">Edit</button></a>
+                                    <a href=#><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit category">Edit</button></a>
                                     </td>
                                     <td align="center">
                                     <form action=# method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete category">DELETE</button>
                                     </form>
 
                                     </td>
