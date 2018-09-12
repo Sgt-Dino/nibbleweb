@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session; //pdf
+use App\Http\Controllers\Controller; //pdf
 use App\Bookings;
 use Auth;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use PDF;//pdf
 
 class ReportController extends Controller
 {
@@ -28,10 +31,16 @@ class ReportController extends Controller
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', ['#startDate', '#endDate'])
+            //->wherebetween('date', ['#startDate', '#endDate'])
             ->orderby('bookingrequest.status')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+    }
+
+    public function fun_pdf()
+    {
+        $pdf = PDF::loadView('reports.status.bookingBM'); //file path to pdf you want to print
+        return $pdf->download('reports.pdf');
     }
 
 //    public function getBookingReport()

@@ -114,6 +114,7 @@
 
                         {{--{{TRYING this! link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}--}}
 
+                        <a href="{{url('/report/pdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
 
                     </div>
                 </div>
