@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@include('layouts.top')
 
-@section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -60,13 +60,10 @@
     <div class="form-group">
       <div></div>
       <button type="submit" class="btn btn-primary">Update</button>
+      <input class="btn btn-danger" type="button" value="Cancel" onclick="history.back()">
     </div>
-  </form>
-
-
-                            
+  </form>                        
                         {!! Form::close() !!}
-
                     </div>
                 </div>
 
@@ -91,4 +88,4 @@ $(".dropdown-menu li a").click(function(){
 });
 </script>
 
-@endsection
+@include('layouts.bottom')

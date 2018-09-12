@@ -13,7 +13,7 @@
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="style4.css">
+        <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
 
   
     </head>
