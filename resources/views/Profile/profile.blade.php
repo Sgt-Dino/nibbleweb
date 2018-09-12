@@ -100,7 +100,7 @@
                     </script>
                         <!--code used from www.w3schools.com HTML Geolocation API coordinates function-->
                         <p>Click the button to get your coordinates.</p>
-                        <button class="btn btn-primary" onclick="getLocation()">Geolocate Me</button>                        
+                        <button class="btn btn-primary" rel="tooltip" title="Get your coordinates" onclick="getLocation()">Geolocate Me</button>
                         <p id="demo"></p>
                         <script>
                         var x = document.getElementById("demo");
