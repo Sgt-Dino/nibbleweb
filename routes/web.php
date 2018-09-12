@@ -39,8 +39,10 @@ Route::resource('category','CategoryController');
 
 Route::resource('profile','ProfileController');
 
-Route::resource('report', 'ReportController');
+Route::resource('reportbymonth', 'ReportController');
+Route::get('/reportbymonthD/{startDate,endDate}',['as' => 'reportbymonth.datechange','uses'=> 'ReportController@datechange']);
 Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
+
 Route::get('/report/pdf', 'reports\ReportController@fun_pdf');
 
 Route::resource('questions', 'faqController');

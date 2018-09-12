@@ -46,7 +46,7 @@
                         </a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href="#">Customer reports</a></li>
-                            <li><a href="#">Status Reports</a></li>
+                            <li><a href="reportbymonth">Status Reports</a></li>
                             <li><a href="#">Other Reports</a></li>
                         </ul>
                     </li>
