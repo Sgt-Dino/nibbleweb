@@ -93,7 +93,8 @@
                 </div>
             </div>
         </div>
-    </div><!-- food -->  
+    </div>
+<!-- food -->
 
 
 @include('layouts.bottom')
