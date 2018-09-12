@@ -15,6 +15,10 @@
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                  });
+                    $("#itemlist").click(function(e) {
+                    $("#itemlist").removeClass("active");
+                    $(e.target).addClass("active");
+                    });
              });
          </script>
          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH5nbLi84BB3QcgwUe-0lMgQZon2C_sB4&callback=myMap"></script>

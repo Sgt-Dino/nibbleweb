@@ -28,7 +28,7 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <li class="active">
+                    <li id="itemlist">
                         <a href="home">
                             <i class="glyphicon glyphicon-home"></i>
                             Home

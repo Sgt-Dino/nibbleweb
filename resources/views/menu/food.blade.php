@@ -1,9 +1,44 @@
 @include('layouts.top')
 
+<!-- menu --> 
+<div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Menu</div>
+
+                    <div class="panel-body">
+                        <p>Select a category or add a dish to the menu</p>
+                        </br>
+
+                        <div class="col-md-10">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Category
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                @foreach($categories as $cat)
+                                <li role="presentation"><a role="menuitem" tabindex="0" href="{{ route('menu.food.cat', ['id' => $cat->menucategoryid]) }}">{{$cat->name}}</a></li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+                        </div>
+                        
+                        </br>
+                                               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- menu --> 
+
     <!-- food -->            
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
 
                 @if(Session::has('message'))
                         <div class="alert alert-success">
@@ -51,7 +86,7 @@
                             @endforeach
                             
                         </table>
-                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+                        
                         
                         
                     </div>
@@ -59,5 +94,6 @@
             </div>
         </div>
     </div><!-- food -->  
+
 
 @include('layouts.bottom')

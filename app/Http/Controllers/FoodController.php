@@ -23,14 +23,18 @@ class FoodController extends Controller
 
     public function index()
     {
-        //12-06
-        
-    
-        
+         //$foods = Food::all()->where('menucategoryid','=','1');
          $foods = Food::all();
          $categories = Category::all();
          return view('menu.food',compact('foods','categories'));
-         
+
+    }
+
+    public function catchange($id)
+    {
+         $foods = Food::all()->where('menucategoryid','=',$id);
+         $categories = Category::all();
+         return view('menu.food',compact('foods','categories'));
 
     }
 

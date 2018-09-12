@@ -25,6 +25,7 @@ Route::resource('food','FoodController');
 Route::get('/edit/{id}',
 ['as' => 'menu.food.edit',
 'uses'=> 'FoodController@edit']);
+Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
 
