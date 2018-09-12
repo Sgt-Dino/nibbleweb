@@ -40,6 +40,8 @@
                             <i class="glyphicon glyphicon-calendar"></i>
                             Bookings
                         </a>
+                    </li>
+                    <li>
                         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                             <i class="	glyphicon glyphicon-stats"></i>
                             Reports
