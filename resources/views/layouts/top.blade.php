@@ -1,22 +1,23 @@
-<!DOCTYPE html>         <!-- Not using this now -->
-<html>
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Nibble</title>
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- Our Custom CSS -->
+        <!-- Custom CSS -->
         <link rel="stylesheet" href="style4.css">
 
   
     </head>
     <body>
-
-
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
@@ -27,7 +28,7 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <li class="active">
+                    <li id="itemlist">
                         <a href="home">
                             <i class="glyphicon glyphicon-home"></i>
                             Home
@@ -57,29 +58,23 @@
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li><a href="food"><i class="glyphicon glyphicon-apple"></i>Food</a></li>
                             <li><a href="category"><i class="glyphicon glyphicon-tags"></i>Category</a></li>	
-                            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>Special</a></li>
+                            <li><a href="specials"><i class="glyphicon glyphicon-shopping-cart"></i>Special</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="profile">
                             <i class="glyphicon glyphicon-user"></i>
                             Profile
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="questions">
                             <i class="glyphicon glyphicon-paperclip"></i>
                             FAQ
                         </a>
                     </li>
-                </ul>
-
-                <ul class="list-unstyled CTAs">
-                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Help</a></li>
-                </ul>
+                </ul>              
             </nav>
-
-
 
             <!-- Page Content Holder -->
             <div id="content">
@@ -96,75 +91,19 @@
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">-</a></li>
-                                <li><a href="#">Logout</a></li>
+                                @if (Auth::guest())
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                @else
+                                    <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        {{ csrf_field() }}
+                                                     </form>
+                                    </li>
+                                @endif                                                                                             
                             </ul>
-                        </div>
-
-                        
+                        </div>                        
                     </div>
                 </nav>
-
-<!-- Booking request -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Booking Requests</div>
-
-                <div class="panel-body">
-
-                    <table class="table table-hover table-striped">
-                    <tr>
-                        <th class="text-left">Date</th>
-                        <th class="text-centre">Time</th>
-                        <th class="text-center">Guest Name</th>
-                        <th class="text-center">Phone</th>
-                        <th class="text-center">No of Guests</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-
-                    @foreach($bookingVar as $Bookings)
-                    <tr>
-                    <td align="left">{{$Bookings->date}}</td>
-                    <td align="centre">{{$Bookings->time}}</td>
-                    <td class="text-center">{{$Bookings->firstname}}</td>
-                    <td class="text-center">{{$Bookings->phone}}</td>
-                    <td class="text-center">{{$Bookings->numofguests}}</td>
-                    <td align="right" style="padding-right: 20px">
-                        <button type ='button' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
-                        <button type="button" name='DeclineRequest' class="btn btn-sm btn-danger">Decline</button>
-                    </tr>
-                    @endforeach
-                    </table>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-            </div> <!-- id="content" -->
-
-     
-        </div>
-
-
-
-
-
-        <!-- jQuery CDN -->
-         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-         <!-- Bootstrap Js CDN -->
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-         <script type="text/javascript">
-             $(document).ready(function () {
-                 $('#sidebarCollapse').on('click', function () {
-                     $('#sidebar').toggleClass('active');
-                 });
-             });
-         </script>
-    </body>
-</html>

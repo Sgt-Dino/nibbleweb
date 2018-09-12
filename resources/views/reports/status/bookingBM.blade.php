@@ -44,18 +44,18 @@
                         <th class="text-left">End Date: <input id="endDate" width="276" /></th>
                     </table>
                         <script>
-                            //var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+                            var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
                             $('#startDate').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome',
                                 minDate: new Date(2016, 0, 1),
                                 onSelect: function(dateText){
                                 // maxDate: function () {
-                                    return $('#endDate').val();
-                                    // var startDate =$('#startDate').val();
-                                    // var endDate =$('#endDate').val();
-                                    // var status =$('#status').val();
-                                    // chart(startDate, endDate, status);
+                                    //return $('#endDate').val();
+                                    var startDate =$('#startDate').val();
+                                    var endDate =$('#endDate').val();
+                                    var status =$('#status').val();
+                                    chart(startDate, endDate, status);
                                 }
                             });
                             $('#endDate').datepicker({
@@ -90,7 +90,7 @@
 
                     <div class="panel-body">
 
-                        <table class="table table-striped">
+                        <table class="table table-hover table-striped">
 
                             <th class="text-center">Status</th>
                             <th class="text-left">Date</th>
