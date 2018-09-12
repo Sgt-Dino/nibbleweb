@@ -1,94 +1,105 @@
-<!DOCTYPE html>
-<html>
-    <head>
+@include('layouts.top')
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href="./css/prettify-1.0.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+        
+        
+        <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+        
 
-        <title>Nibble</title>
+ 
 
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="style4.css">
-
-        <!-- Date Picker -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
-        <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-        <!-- Date Picker -->
-
-    </head>
-
-    <body>
+   
+        
 <!-- status report -->
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Status Report by Month</div>
-                    {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
+                   
 
-                    {{--{!! Form::open(array('route'=>'food.store')) !!}--}}
 
-                    <!-- Date Picker -->
-                    <table class="table">
-                        </br>
-                        <th class="text-left">Start Date: <input id="startDate" width="276" /></th>
-                        <th class="text-left">End Date: <input id="endDate" width="276" /></th>
-                    </table>
-                        <script>
-                            var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-                            $('#startDate').datepicker({
-                                uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome',
-                                minDate: new Date(2016, 0, 1),
-                                onSelect: function(dateText){
-                                // maxDate: function () {
-                                    //return $('#endDate').val();
-                                    var startDate =$('#startDate').val();
-                                    var endDate =$('#endDate').val();
-                                    var status =$('#status').val();
-                                    chart(startDate, endDate, status);
-                                }
-                            });
-                            $('#endDate').datepicker({
-                                uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome',
-                                onSelect: function(dateText){
-                                // minDate: function () {
-                                    return $('#startDate').val();
-                                    // var startDate =$('#startDate').val();
-                                    // var endDate =$('#endDate').val();
-                                    // var status =$('#status').val();
-                                    // chart(startDate, endDate, status);
-                                }
-                            });
-//---------------------------------------------------------------------
-                            {{--function chart(criteria1, criteria2, criteria3)--}}
-                            {{--{--}}
-                                {{--$.ajax({--}}
-                                    {{--type:   'get',--}}
-                                    {{--url:    "{!!url('status-by-month')  !!}",--}}
-                                    {{--data: {startDate:criteria1, endDate:criteria2, status:criteria3},--}}
-                                    {{--success:function(data)--}}
-                                    {{--{--}}
-                                        {{--$('.status-by-month').empty().html(data);--}}
-                                    {{--}--}}
 
-                                {{--})--}}
-                            {{--}--}}
 
-                        </script>
-                    <!-- Date Picker -->
+                            {{csrf_field()}}
+                            <input name="_method" type="hidden" value="PATCH">
+                            <input name="accepted" type="hidden" value="A">
+                            <input name="status" type="hidden" value="A">
+                            
+                            </form>
+
+
+
+
+
+
 
                     <div class="panel-body">
+
+                    {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
+                    {{--{!! Form::open(array('route'=>'food.store')) !!}--}}
+<!-- Date Picker -->
+                     <div class="container">
+                     <form method="post" action="{{ route('reportbymonth.datechange', ['datetimepicker6','datetimepicker7']) }}">
+                     {{csrf_field()}}
+                            <input name="_method" type="hidden" value="PATCH">
+                        <div class='col-md-4'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker6'>
+                                    <input name="datetimepicker6" type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-4'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker7'>
+                                    <input name="datetimepicker7" type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type ='submit' name='Date' class="btn btn-sm btn-success">Date</button>
+                        <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker6').datetimepicker();
+                            $('#datetimepicker7').datetimepicker({
+                                useCurrent: false //Important! See issue #1075
+                            });
+                            $("#datetimepicker6").on("dp.change", function (e) {
+                                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                            });
+                            $("#datetimepicker7").on("dp.change", function (e) {
+                                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                            });
+                            $('#datetimepicker6').data('datetimepicker6').date();
+                            $('#datetimepicker7').data('datetimepicker7').date();
+                   
+                            
+                        });
+                    </script>
+                        </form>
+                    </div>
+                    
+<!-- Date Picker -->
 
                         <table class="table table-hover table-striped">
 
@@ -121,6 +132,6 @@
             </div>
         </div>
     </div>
-<!-- status report -->
-    </body>
-</html>
+    
+  
+@include('layouts.bottomreport')

@@ -43,6 +43,19 @@ class ReportController extends Controller
         return $pdf->download('reports.pdf');
     }
 
+    public function datechange($startDate, $endDate)
+    {
+        //MUST UNDO!!!
+        $userId = Auth::id();
+        $statusBM= DB::table('bookingrequest')
+            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->wherebetween('date', [$startDate,$endDate])
+            ->orderby('bookingrequest.status')
+            ->get();
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+    }
+
 //    public function getBookingReport()
 //    {
 //        $statusBM=bookingrequest::orderBy('status')->lists('status', 'date', 'time', 'numofguests', 'customerid');
