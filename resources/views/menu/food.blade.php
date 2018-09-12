@@ -71,14 +71,14 @@
                                     <td>{{$food->itemprice}}</td>
                                   
                                     <td align="center">
-                                    <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary">Edit</button></a>
+                                    <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit food">Edit</button></a>
                                     </td>
 
                                     <td align="center">
                                     <form action="{{ route('menu.food.destroy', ['id' => $food->menuitemid]) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}                                   
-                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>                                   
+                                    <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete food">DELETE</button>
                                     </form>
 
                                     </td>

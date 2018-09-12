@@ -66,7 +66,14 @@
                             <input name="_method" type="hidden" value="PATCH">
                             <input name="accepted" type="hidden" value="A">
                             <input name="status" type="hidden" value="C">
-                            <button type ='submit' class="btn btn-sm btn-success">Check in</button>
+                            <button type ='submit' class="btn btn-sm btn-success" rel="tooltip" title="Customer arrived">Check in</button>
+                                <!--Tooltip-->
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $("[rel=tooltip]").tooltip({ placement: 'top'});
+                                    });
+                                </script>
+                                <!--Tooltip-->
                             </form>
                             @if ( count( $errors ) > 0 )
                             <ul class="aler alert-danger">
@@ -84,7 +91,7 @@
                             <input name="_method" type="hidden" value="PATCH">
                             <input name="accepted" type="hidden" value="A">
                             <input name="status" type="hidden" value="M">
-                            <button type ='submit' class="btn btn-sm btn-danger">Missed</button>
+                            <button type ='submit' class="btn btn-sm btn-danger" rel="tooltip" title="Customer did not arrive">Missed</button>
                             </form>
                             @if ( count( $errors ) > 0 )
                             <ul class="aler alert-danger">

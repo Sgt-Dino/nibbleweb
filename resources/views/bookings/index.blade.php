@@ -36,7 +36,7 @@
                             <input name="_method" type="hidden" value="PATCH">
                             <input name="accepted" type="hidden" value="A">
                             <input name="status" type="hidden" value="A">
-                            <button type ='submit' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
+                            <button type ='submit' name='AcceptRequest' class="btn btn-sm btn-success" rel="tooltip" title="Accept booking request">Accept</button>
                             </form>
                             @if ( count( $errors ) > 0 )
                             <ul class="aler alert-danger">
@@ -54,7 +54,7 @@
                             <input name="_method" type="hidden" value="PATCH">
                             <input name="accepted" type="hidden" value="D">
                             <input name="status" type="hidden" value="A">
-                            <button type="submit" name='DeclineRequest' class="btn btn-sm btn-danger">Decline</button>
+                            <button type="submit" name='DeclineRequest' class="btn btn-sm btn-danger" rel="tooltip" title="Decline booking request">Decline</button>
                             </form>
                             @if ( count( $errors ) > 0 )
                             <ul class="aler alert-danger">
