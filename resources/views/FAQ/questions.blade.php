@@ -123,20 +123,21 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
+
+
                         <div class="panel-heading">Questions you may have
                             <div class="form group">
-                                <input type="text" id="search-input" class="'form-control" placeholder="Search" align="center">
+                                <input type="text" align="right" id="search-input" class="'form-control" placeholder="Search...">
                             </div>
                         </div>
 
 
-
                         <div class="panel-body">
 
-                            <table class="table" width=" ">
+                            <table class="table width=default table-striped">
 
-                                <th width="700" class="text-center">Question</th>
-                                <th width="1500" class="text-center">Answer</th>
+                                <th  class="text-center">Question</th>
+                                <th  class="text-center">Answer</th>
 
                                 @foreach($question as $QandA)
                                     <tr>

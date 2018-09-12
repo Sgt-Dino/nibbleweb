@@ -41,6 +41,7 @@ Route::resource('profile','ProfileController');
 
 Route::resource('report', 'ReportController');
 Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
+Route::get('/report/pdf', 'reports\ReportController@fun_pdf');
 
 Route::resource('questions', 'faqController');
 

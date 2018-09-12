@@ -1,6 +1,6 @@
 @include('layouts.top')
 
-<!-- menu --> 
+<!-- menu -->
 <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -26,14 +26,14 @@
                         <div class="col">
                         {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
                         </div>
-                        
+
                         </br>
-                                               
+
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- menu --> 
+    </div><!-- menu -->
 
     <!-- food -->            
     <div class="container">
@@ -61,17 +61,17 @@
 
                             @foreach($foods as $food)
                                 <tr>
-                                
+
                                     <td>{{$food->itemname}}</td>
                                     @foreach($categories as $cat)
                                     @if($cat->menucategoryid==$food->menucategoryid)
                                     <td>{{$cat->name}}</td>
                                     @endif
-                                    @endforeach                                   
+                                    @endforeach
                                     <td>{{$food->itemprice}}</td>
                                   
                                     <td align="center">
-                                    <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary">Edit</button></a> 
+                                    <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary">Edit</button></a>
                                     </td>
 
                                     <td align="center">
@@ -80,15 +80,15 @@
                                     {{ method_field('DELETE') }}                                   
                                     <button type="submit" class="btn btn-sm btn-danger">DELETE</button>                                   
                                     </form>
-                                            
+
                                     </td>
                                 </tr>
                             @endforeach
-                            
+
                         </table>
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>

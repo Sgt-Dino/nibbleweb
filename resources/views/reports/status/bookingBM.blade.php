@@ -63,11 +63,11 @@
                                 iconsLibrary: 'fontawesome',
                                 onSelect: function(dateText){
                                 // minDate: function () {
-                                    // return $('#startDate').val();
-                                    var startDate =$('#startDate').val();
-                                    var endDate =$('#endDate').val();
-                                    var status =$('#status').val();
-                                    chart(startDate, endDate, status);
+                                    return $('#startDate').val();
+                                    // var startDate =$('#startDate').val();
+                                    // var endDate =$('#endDate').val();
+                                    // var status =$('#status').val();
+                                    // chart(startDate, endDate, status);
                                 }
                             });
 //---------------------------------------------------------------------
@@ -90,7 +90,7 @@
 
                     <div class="panel-body">
 
-                        <table class="table table-striped">
+                        <table class="table table-hover table-striped">
 
                             <th class="text-center">Status</th>
                             <th class="text-left">Date</th>
@@ -114,6 +114,7 @@
 
                         {{--{{TRYING this! link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}--}}
 
+                        <a href="{{url('/report/pdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
 
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @include('layouts.top')
 
-<!-- category -->            
+<!-- category -->
 <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -22,22 +22,22 @@
                                 <th class="text-center">Update</th>
                                 <th class="text-center">Delete</th>
                             </tr>
-                            
+
                             @foreach($category as $cat)
                                 <tr>
                                     <td>{{$cat->name}}</td>
                                     <td>{{$cat->description}}</td>
-                                  
+
                                     <td align="center">
                                     <a href=#><button class="btn btn-sm btn-primary">Edit</button></a>
                                     </td>
                                     <td align="center">
                                     <form action=# method="post">
                                     {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}                                   
-                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>                                   
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
                                     </form>
-                                            
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -47,6 +47,6 @@
                 </div>
             </div>
         </div>
-    </div><!-- food -->  
-                
+    </div><!-- food -->
+
     @include('layouts.bottom')
