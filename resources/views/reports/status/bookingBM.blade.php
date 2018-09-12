@@ -56,7 +56,6 @@
                      <div class="container">
                      <form method="post" action="{{ route('reportbymonth.datechange', ['datetimepicker6','datetimepicker7']) }}">
                      {{csrf_field()}}
-                            <input name="_method" type="hidden" value="PATCH">
                         <div class='col-md-4'>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker6'>

@@ -56,6 +56,19 @@ class ReportController extends Controller
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
 
+    public function dummydate()
+    {
+        //MUST UNDO!!!
+        $userId = Auth::id();
+        $statusBM= DB::table('bookingrequest')
+            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->wherebetween('date', ['2018/01/02','2018/04/29'])
+            ->orderby('bookingrequest.status')
+            ->get();
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+    }
+
 //    public function getBookingReport()
 //    {
 //        $statusBM=bookingrequest::orderBy('status')->lists('status', 'date', 'time', 'numofguests', 'customerid');
