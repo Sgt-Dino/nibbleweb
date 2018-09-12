@@ -77,8 +77,11 @@
                                 </div>
                             </div>
                         </div>
-                        <button type ='submit' name='Date' class="btn btn-sm btn-success">Date</button>
-                        <script type="text/javascript">
+                        <button type ='submit' name='Date' class="btn btn-sm btn-success">Date</button>                      
+                        </form>
+                    </div>
+
+                    <script type="text/javascript">
                         $(function () {
                             $('#datetimepicker6').datetimepicker();
                             $('#datetimepicker7').datetimepicker({
@@ -91,13 +94,9 @@
                                 $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
                             });
                             $('#datetimepicker6').data('datetimepicker6').date();
-                            $('#datetimepicker7').data('datetimepicker7').date();
-                   
-                            
+                            $('#datetimepicker7').data('datetimepicker7').date();                           
                         });
                     </script>
-                        </form>
-                    </div>
                     
 <!-- Date Picker -->
 
