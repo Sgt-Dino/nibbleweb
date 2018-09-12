@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Food;
 use App\Category;
+use Auth;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
 
