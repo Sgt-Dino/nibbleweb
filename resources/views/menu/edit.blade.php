@@ -60,7 +60,7 @@
     <div class="form-group">
       <div></div>
       <button type="submit" class="btn btn-primary">Update</button>
-      <button href="food" class="btn btn-danger">Cancel</button>
+      <input class="btn btn-danger" type="button" value="Cancel" onclick="history.back()">
     </div>
   </form>                        
                         {!! Form::close() !!}

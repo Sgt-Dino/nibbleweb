@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+@include('layouts.top')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -33,7 +31,9 @@
 
                             <div class="form-group">
                                 {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
-                            </div>
+                
+                                <input class="btn btn-danger" type="button" value="Cancel" onclick="history.back()">
+                            </div>                         
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -49,4 +49,5 @@
 
         </div>
     </div>
-@endsection
+
+@include('layouts.bottom')
