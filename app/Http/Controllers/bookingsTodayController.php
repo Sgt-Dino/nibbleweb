@@ -35,6 +35,8 @@ class bookingsTodayController extends Controller
             ->where('bookingrequest.restaurantid','=',$userId)
             ->where('bookingrequest.date','=',$todayDate)
             ->where('bookingrequest.status','<>','N')
+            ->where('bookingrequest.status','<>','C')
+            ->where('bookingrequest.status','<>','M')
             ->ORDERBY('bookingrequest.time', 'ASC')
             ->get();
             $bookingsCanceled= DB::table('bookingrequest')

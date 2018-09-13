@@ -29,6 +29,7 @@ class bookingsController extends Controller
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
+            ->where('bookingrequest.accepted','=','P')
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
