@@ -29,14 +29,14 @@
 
                 <ul class="list-unstyled components">
                     <li id="itemlist">
-                        <a href="home">
+                        <a href= {{ url('home') }}>
                             <i class="glyphicon glyphicon-home"></i>
                             Home
                         </a>
                         
                     </li>
                     <li>
-                        <a href="booking">
+                        <a href= {{ url('booking') }}>
                             <i class="glyphicon glyphicon-calendar"></i>
                             Bookings
                         </a>
@@ -48,7 +48,7 @@
                         </a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href="#">Customer reports</a></li>
-                            <li><a href="reportbymonth">Status Reports</a></li>
+                            <li><a href= {{ url('reportbymonth') }}>Status Reports</a></li>
                             <li><a href="#">Other Reports</a></li>
                         </ul>
                     </li>
@@ -58,19 +58,19 @@
                             Menu
                         </a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="food"><i class="glyphicon glyphicon-apple"></i>Food</a></li>
-                            <li><a href="category"><i class="glyphicon glyphicon-tags"></i>Category</a></li>	
-                            <li><a href="specials"><i class="glyphicon glyphicon-shopping-cart"></i>Special</a></li>
+                            <li><a href= {{ url('food') }}><i class="glyphicon glyphicon-apple"></i>Food</a></li>
+                            <li><a href= {{ url('category') }}><i class="glyphicon glyphicon-tags"></i>Category</a></li>	
+                            <li><a href= {{ url('specials') }}><i class="glyphicon glyphicon-shopping-cart"></i>Special</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="profile">
+                        <a href= {{ url('profile') }}>
                             <i class="glyphicon glyphicon-user"></i>
                             Profile
                         </a>
                     </li>
                     <li>
-                        <a href="questions">
+                        <a href= {{ url('questions') }}>
                             <i class="glyphicon glyphicon-paperclip"></i>
                             FAQ
                         </a>
