@@ -97,7 +97,9 @@
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
                                 @else
-                                        <img alt="Help" src="Help.png" class="rounded-circle" width="42" height="42" rel="tooltip" title="Help will be coming soon..."/>
+                                <li><a href="#" rel="tooltip" title="Help will be coming soon...">Help</a></li>
+                                
+
                                     <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
