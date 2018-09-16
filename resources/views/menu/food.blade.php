@@ -1,5 +1,9 @@
 @include('layouts.top')
 
+<!--Popover-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--Popover-->
+
 <!-- menu -->
 <div class="container">
         <div class="row">
@@ -52,11 +56,22 @@
                     <div class="panel-body">
                         <table class="table table-hover table-striped">
                             <tr>
+                                <!--Popover-->
+                                <script>
+                                    $(document).ready(function(){
+                                        $('[data-toggle="popover"]').popover();
+                                    });
+                                </script>
+                                <!--Popover-->
+
                                 <th>Name</th>
                                 <th>Menu</th>
                                 <th>Price</th>
-                                <th class="text-center">Update</th>
-                                <th class="text-center">Delete</th>
+
+                                <!--Popover-->
+                                <th class="text-center" data-toggle="popover" data-placement="right" title="Edit/Update Food" data-content="A specific food item can be edited or updated. Click on the 'edit' button for the specific food item you want to update.">Update</th>
+                                <th class="text-center" data-toggle="popover" data-placement="left" title="Delete Food" data-content="A specific food item can be deleted. Click on the 'delete' button for the specific food item you want to delete.">Delete</th>
+                                <!--Popover-->
                             </tr>
 
                             @foreach($foods as $food)
