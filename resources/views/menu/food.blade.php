@@ -9,7 +9,7 @@
                     <div class="panel-heading">Menu</div>
 
                     <div class="panel-body">
-                        <p>Select a category or add a dish to the menu</p>
+                        <p>Filter by category or add a dish to the menu</p>
                         </br>
 
                         <div class="col-md-10">

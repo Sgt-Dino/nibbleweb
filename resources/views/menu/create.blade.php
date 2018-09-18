@@ -11,22 +11,27 @@
                         {!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
                                 {!! Form::label('itemname','Add Food Name') !!}
-                                {!! Form::text('itemname',null,['class'=>'form-control']) !!}
+                                {!! Form::text('itemname',null,['required','class'=>'form-control']) !!}
                             </div>                    
 
                              <div class="form-group">
                                 {!! Form::label('itemdescription','Add Item Description') !!}
-                                {!! Form::text('itemdescription',null,['class'=>'form-control']) !!}
-                            </div>
+                                {!! Form::text('itemdescription',null,['required','class'=>'form-control']) !!}
+                            </div>                       
 
                             <div class="form-group">
-                                {!! Form::label('menucategoryid','Add Menu Category ID') !!}
-                                {!! Form::text('menucategoryid',null,['class'=>'form-control']) !!}
-                            </div>
+                                            <label>Category</label>
+                                            <select name="menucategoryid" class="form-control">
+                                            @foreach($categories as $cat)
+                                                <option name="menucategoryid" value={{$cat->menucategoryid}}>{{$cat->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>                             
+                            </br>
 
                              <div class="form-group">
                                 {!! Form::label('itemprice','Add Cost') !!}
-                                {!! Form::text('itemprice',null,['class'=>'form-control']) !!}
+                                {!! Form::number('itemprice',null,['required','class'=>'form-control']) !!}
                             </div>
 
                             <div class="form-group">
@@ -49,5 +54,15 @@
 
         </div>
     </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+$(".dropdown-menu li a").click(function(){ 
+  $(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
+});
+});
+</script>
 
 @include('layouts.bottom')

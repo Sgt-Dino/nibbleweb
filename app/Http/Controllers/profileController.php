@@ -100,7 +100,7 @@ class ProfileController extends Controller
         $profile->phone = $request->get('phone');
         $profile->restauranttype = $request->get('restauranttype');
         $profile->email = $request->get('email');
-        $profile->suburb = $request->get('suburb');
+        $profile->suburbid = $request->get('suburbid');
         $profile->addressline1 = $request->get('addressline1');
         $profile->websiteurl = $request->get('websiteurl');
         $profile->save();

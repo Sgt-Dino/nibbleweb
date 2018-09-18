@@ -25,16 +25,26 @@ class FoodController extends Controller
     public function index()
     {
          //$foods = Food::all()->where('menucategoryid','=','1');
-         $foods = Food::all();
-         $categories = Category::all();
+         $userId = Auth::id();
+         //$foods = Food::all()->where('restaurantid','=',$userId);
+
+         $foods= DB::table('menuitem')
+         ->join('menucategory', 'menuitem.menucategoryid', '=', 'menucategory.menucategoryid')
+         ->select('*')
+         ->from('menuitem','menucategory')
+         ->where('menucategory.restaurantid','=',$userId)
+         ->get();
+
+         $categories = Category::all()->where('restaurantid','=',$userId);
          return view('menu.food',compact('foods','categories'));
 
     }
 
     public function catchange($id)
     {
+        $userId = Auth::id();
          $foods = Food::all()->where('menucategoryid','=',$id);
-         $categories = Category::all();
+         $categories = Category::all()->where('restaurantid','=',$userId);
          return view('menu.food',compact('foods','categories'));
 
     }
@@ -46,7 +56,9 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('menu.create');
+        $userId = Auth::id();
+        $categories = Category::all()->where('restaurantid','=',$userId);
+        return view('menu.create',compact('categories'));
     }
 
     /**
@@ -57,8 +69,9 @@ class FoodController extends Controller
      */
     public function store(FoodRequest $request)
     {
+        $userId = Auth::id();
         Food::create($request->all());
-        return redirect('/food')->with('message','Item has been added succesfully');
+        return redirect('/food')->with('message','Food has been succesfully added to the menu');
     }
 
     /**
@@ -80,8 +93,9 @@ class FoodController extends Controller
      */
     public function edit($id)
     {
+        $userId = Auth::id();
         $food = Food::findOrFail(Crypt::decrypt($id));
-        $categories = Category::all();
+        $categories = Category::all()->where('restaurantid','=',$userId);
         return view('menu.edit',compact('food','categories'));
     }
 

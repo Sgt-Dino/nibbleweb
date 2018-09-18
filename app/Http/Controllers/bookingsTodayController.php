@@ -110,7 +110,7 @@ class bookingsTodayController extends Controller
         $bookingVar->accepted = $bookingVar->accepted;
         $bookingVar->status = 'C';      
         $bookingVar->save();
-        return redirect('/home')->with('message','item has been updated successfully');
+        return redirect('/home')->with('message','Customer has been checked in');
     }
     public function updateM(BookingRequest $request, $id)
     {
@@ -118,7 +118,7 @@ class bookingsTodayController extends Controller
         $bookingVar->accepted = $bookingVar->accepted;
         $bookingVar->status = 'M';      
         $bookingVar->save();
-        return redirect('/home')->with('message','item has been updated successfully');
+        return redirect('/home')->with('message','Booking Request has been updated successfully');
     }
 
     /**

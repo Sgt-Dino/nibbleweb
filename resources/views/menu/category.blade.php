@@ -29,20 +29,33 @@
                                     <td>{{$cat->description}}</td>
 
                                     <td align="center">
-                                    <a href=#><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit category">Edit</button></a>
+                                    <a href="{{ route('menu.category.edit',Crypt::encrypt($cat->menucategoryid)) }}"><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit category">Edit</button></a>
                                     </td>
                                     <td align="center">
-                                    <form action=# method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete category">DELETE</button>
-                                    </form>
 
+                            @if(isset($cat)) 
+                            <form method="post" action="{{ route('menu.Category.Remove', ['id' => $cat->menucategoryid]) }}">
+                            {{csrf_field()}}
+                            <input name="_method" type="hidden" value="PATCH">
+                            <input name="active" type="hidden" value="N">
+                            <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete category">DELETE</button>
+                            </form>
+                            @if ( count( $errors ) > 0 )
+                            <ul class="aler alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
+                            @endif
+
+                                   
+                                    
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
-                        {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
+                        {{ link_to_route('category.create','Add new Category',null,['class'=>'btn btn-success']) }}
                     </div>
                 </div>
             </div>
