@@ -13,11 +13,6 @@ use PDF;//pdf
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
@@ -39,73 +34,10 @@ class ReportController extends Controller
 
     public function fun_pdf()
     {
-        //grab some html
-        //create pdf class
-        //then send html to the class
-        //then respond with pdf back to the browser or
-        //send to the file system
-
         $pdf = PDF::loadView('reports.status.bookingBM'); //file path to pdf you want to print
         return $pdf->download('reports.pdf');
     }
 
-    public function datechange($startDate, $endDate)
-    {
-        //MUST UNDO!!!
-        $userId = Auth::id();
-        $statusBM= DB::table('bookingrequest')
-            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
-            ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', [$startDate,$endDate])
-            ->orderby('bookingrequest.status')
-            ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
-    }
-
-    public function dummydate()
-    {
-        //MUST UNDO!!!
-        $userId = Auth::id();
-        $statusBM= DB::table('bookingrequest')
-            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
-            ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', ['2018/01/02','2018/04/29'])
-            ->orderby('bookingrequest.status')
-            ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
-    }
-
-//    public function getBookingReport()
-//    {
-//        $statusBM=bookingrequest::orderBy('status')->lists('status', 'date', 'time', 'numofguests', 'customerid');
-//        return  view ('reports.status.bookingBM');
-//    }
-
-//    public function getBookingReport()
-//    {
-//        $statusBM =bookingrequest::orderBy('date');
-//        return view(reports.status.chart);
-//    }
-//
-//    public function exportStudentInfo
-//    {
-//        if ($request->ajax())
-//        {
-//            $userId = Auth::id();
-//            $status=bookingrequest::table('bookingrequest')
-//                ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
-//                ->where('bookingrequest.restaurantid', '=', $userId)
-//                ->wherebetween('date', $(#startdate), ()#endate)
-//                ->orderby('bookingrequest.status')
-//                ->get();
-//        }
-//    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -119,7 +51,23 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $start = $request->startdate;
+        $end = $request->enddate;
+        if ($start < $end)
+        {
+            $userId = Auth::id();
+            $request= DB::table('bookingrequest')
+                ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+                ->where('bookingrequest.restaurantid','=',$userId)
+                ->wherebetween('date', ['startdate', 'enddate'])
+                ->orderby('bookingrequest.status')
+                ->get();
+            return view('reports.status.bookingBM', ['Request'=>$request]);
+        }
+        else
+        {
+            return redirect('/reportbymonth')->with('message','Select a valid date range');
+        }
     }
 
     /**

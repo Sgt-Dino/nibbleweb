@@ -1,29 +1,15 @@
 @include('layouts.top')
 
-     
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link href="./css/prettify-1.0.css" rel="stylesheet">
-        <link href="./css/base.css" rel="stylesheet">
-        <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<!-- jQuery CDN -->
+<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-        
-        
-        <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-        
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
- 
 
-   
-        
 <!-- status report -->
     <div class="container">
         <div class="row">
@@ -36,50 +22,36 @@
                     {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
 
 <!-- Date Picker -->
-                     <div class="container">
-                     <form method="post" action="{{ route('reportbymonth.datechange', ['startDate','endDate']) }}">
-                     {{csrf_field()}}
-                        <div class='col-md-4'>
-                            <div class="form-group">
-                                <div class='input-group date' id='startDate'>
-                                    <input name="startDate" type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='col-md-4'>
-                            <div class="form-group">
-                                <div class='input-group date' id='endDate'>
-                                    <input name="endDate" type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <button type ='submit' name='Date' class="btn btn-sm btn-success">Date</button>                      
-                        </form>
-                    </div>
 
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#startDate').datetimepicker();
-                            $('#endDate').datetimepicker({
-                                useCurrent: false //Important! See issue #1075
-                            });
-                            $("#startDate").on("dp.change", function (e) {
-                                $('#endDate').data("DateTimePicker").minDate(e.date);
-                            });
-                            $("#endDate").on("dp.change", function (e) {
-                                $('#startDate').data("DateTimePicker").maxDate(e.date);
-                            });
-                            $('#startDate').data('DateTimePicker').date();
-                            $('#endDate').data('DateTimePicker').date();                           
+                <script type="text/javascript">
+                    $(function() {
+                        $( "#calendar1" ).datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true
                         });
-                    </script>
-                    
+                        $( "#calendar2" ).datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true,
+                        });
+                    });
+                </script>
+
+                        <div class="form-group">
+                            <div class='input-group'>
+                                {!! Form::text('startdate', null, ['required','class'=>'form-control',"placeholder" => "Start Date", 'id' => 'calendar1']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class='input-group'>
+                                {!! Form::text('enddate', null, ['required','class'=>'form-control',"placeholder" => "End Date", 'id' => 'calendar2']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
+                        </div>
+
 <!-- Date Picker -->
 
                         <table class="table table-hover table-striped">
