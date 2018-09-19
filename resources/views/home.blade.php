@@ -43,13 +43,14 @@
 
                     <table class="table table-hover table-striped">
                     <tr>
+
                         <th class="text-left">Time</th>
                         <th class="text-center">Guest Name</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">No of Guests</th>                       
                         <th class="text-center">Status</th>
-                        <th class="text-center">Check-In</th>
-                        <th class="text-center">Missed</th>
+                        <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Arrived" data-content="When a customer arrives at your restaurant, the customer must be 'Checked-in'. Nibble needs to know that the customer was there. This information will be stored and can be used by your restaurant.">Check-In</th>
+                        <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Missed" data-content="When a customer does not arrive for their booking, the customer 'Missed' their booking. Nibble needs to know that the customer was not there. This information will be stored and can be used by your restaurant.">Missed</th>
                     </tr>
 
                     @foreach($bookingTodayVar as $BookingsToday)

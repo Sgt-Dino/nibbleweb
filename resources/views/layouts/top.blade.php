@@ -15,6 +15,17 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
 
+        <!--Popover-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover({
+                    container: 'body'
+                });
+            });
+        </script>
+        <!--Popover-->
   
     </head>
     <body>

@@ -19,8 +19,9 @@
                         <th class="text-center">Guest Name</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">No of Guests</th>
-                        <th class="text-center">Accept</th>
-                        <th class="text-center">Decline</th>
+
+                        <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Accept Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been accepted, a notification will be sent to the customer. When the day comes of that specific booking request, the booking will appear on the home screen.">Accept</th>
+                        <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Decline Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been declined, a notification will be sent to the customer. Declined requests are displayed below.">Decline</th>
                     </tr>                   
                     @foreach($bookingVar as $Bookings)                   
                     <tr>
@@ -89,7 +90,7 @@
                         <th class="text-center">Guest Name</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">No of Guests</th>
-                        <th class="text-center">Accept</th>
+                        <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Accept Declined Booking Requests" data-content="When a customer makes a booking request and the request is declined, the declined request will be displayed here. If, for any reason, your restaurant is now able to accommodate this request- the restaurant has the option to accept the request. A notification will be sent to the customer. ">Accept</th>
                     </tr>                   
                     @foreach($bookingD as $Bookings)                   
                     <tr>
