@@ -39,6 +39,7 @@ Route::patch('/updateprofile/{id}', ['uses' => 'profileController@update', 'as' 
 Route::get('/reportbymonthD/{startDate,endDate}',['as' => 'reportbymonth.datechange','uses'=> 'ReportController@datechange']);
 Route::get('/dummydate',['as' => 'reportbymonth.dummydate','uses'=> 'ReportController@dummydate']);
 Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
+Route::get('/statusbymonth/pdf', 'ReportController@fun_pdf');
 
 Route::get('/report/pdf', 'reports\ReportController@fun_pdf');
 
@@ -49,6 +50,8 @@ Route::resource('booking','bookingsController');
 Route::resource('food','FoodController');
 Route::resource('home','bookingsTodayController');
 Route::resource('profile','ProfileController');
+
+Route::resource('help', 'helpController');
 
 //Route::patch('/report/chart',['uses' => 'ReportController@show', 'as' => 'reports.status.chart.show']);
 

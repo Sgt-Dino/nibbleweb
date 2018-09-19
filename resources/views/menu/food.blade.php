@@ -27,7 +27,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col">
+                        <div rel="tooltip" title="Add new food" class="col">
                         {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
                         </div>
 
