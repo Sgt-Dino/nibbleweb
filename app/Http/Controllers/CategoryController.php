@@ -34,6 +34,7 @@ class CategoryController extends Controller
         $category= DB::table('menucategory')
             ->select('*')
             ->where('menucategory.restaurantid','=',$userId)
+            ->where('menucategory.active','=','Y')
             ->get();
          //$category = Category::all();
          return view('menu.category',compact('category'));
@@ -49,7 +50,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-
+        return view('menu.categorycreate');
     
     }
 
@@ -62,7 +63,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        Category::create($request->all());
+        $request->restaurantid = Auth::id();
+        return redirect('/category')->with('message','Category has been succesfully added');
     }
+    
 
     /**
      * Display the specified resource.
@@ -89,6 +94,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $cat = Category::findOrFail(Crypt::decrypt($id));
+        return view('menu.categoryedit',compact('cat'));
     }
 
     /**
@@ -100,7 +107,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->name = $request->get('name');
+        $category->description = $request->get('description');
+        $category->active = $request->get('active');
+        $category->save();
+        return redirect('/category')->with('message','Category has been successfully updated');
+
+        
+    }
+
+    public function updateRemove(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->active = 'N';
+        $category->save();
+        return redirect('/category')->with('message','Category has been successfully removed');
 
         
     }

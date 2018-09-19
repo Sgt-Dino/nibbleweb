@@ -7,9 +7,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h4>Profile Information</h4></div>
                     <div class="panel-body">
-					<?php 
+                    
+                    <?php 
 			        $restaurantadminid = Auth::id();				            
                     ?>
+
+                
+                                                               
+                    <form method="post" action="{{ route('profile.profile.update', ['id' => $restaurantadminid]) }}">
+                                                             
+                                                                
+					
                         @if(isset($profiles)) 
                         @foreach ($profiles as $prof) 
 							@if($prof->id == $restaurantadminid)
@@ -19,45 +27,59 @@
 							<input name="_method" type="hidden" value="PATCH">      
 							<label>Restaurant Name</label>
 						  <div>     
-							<input type="text" readonly class="form-control" name="name" value={{$prof->restaurantname}}>
+							<input type="text" readonly class="form-control" name="restaurantname" value={{$prof->restaurantname}}>
 						  </div>      
 						  </div>
 						  
 						  <div class="form-group">
 							<label>Contact</label>
 						  <div>
-							<input type="number" name="contact" class="form-control" value={{$prof->phone}}>
+							<input type="number" name="phone" class="form-control" value={{$prof->phone}}>
 						  </div>
 						  </div>
 						  
-						  <div>
+						  <div class="form-group">
 						  <label>Email</label>
 						  <div>
-						  <input type="text"  name="email" class="form-control" value={{$prof->email}}>
+						  <input type="text" name="email" class="form-control" value={{$prof->email}}>
+						  </div>
+						  </div>
+						  </br>
+
+                          <div class="form-group">
+						  <label>Restaurant Type</label>
+						  <div>
+						  <input type="text" name="restauranttype" class="form-control" value={{$prof->restauranttype}}>
 						  </div>
 						  </div>
 						  </br>
 						  
-						  <div>
+						  <div class="form-group">
 							<label>Restaurant Address</label>
 						  <div>
-							<textarea name="address" class="form-control" cols="1" rows="1" >{{$prof->addressline1}}</textarea>
+							<textarea name="addressline1" class="form-control" cols="1" rows="1" >{{$prof->addressline1}}</textarea>
 						  </div>
 						  </div>
 						  </br>
-						  
-						  <div>
-						  <label>Suburb</label>
-						  <div>
-						  <input type="text"  name="suburb" class="form-control" value={{$prof->suburbid}}>
-						  </div>
-						  </div>
-						  </br>
-						  
-						  <div>
+                          
+                          <div class="form-group">
+                                <label>Suburb</label>
+                                <select name="suburbid" class="form-control">
+                                @foreach($subs as $suburb)
+                                @if($prof->suburbid==$suburb->suburbid)
+                                <option selected name="suburbid" value={{$suburb->suburbid}}>{{$suburb->suburbname}}</option>
+                                @else
+                                <option name="suburbid" value={{$suburb->suburbid}}>{{$suburb->suburbname}}</option>
+                                @endif
+                                @endforeach
+                                </select>  
+                                </div>                       
+                            </br>
+                          						  
+                            <div class="form-group">
 						  <label>Website</label>
 						  <div>
-						  <input type="text"  name="website" class="form-control" value={{$prof->websiteurl}}>
+						  <input type="text"  name="websiteurl" class="form-control" value={{$prof->websiteurl}}>
 						  </div>
 						  </div>
 						  </br>
@@ -69,6 +91,8 @@
 							<button type="submit" class="btn btn-primary" rel="tooltip" title="Update profile">Update</button>
 							</div>
 							</form>
+
+                
                     </div>
                 </div>
             </div>

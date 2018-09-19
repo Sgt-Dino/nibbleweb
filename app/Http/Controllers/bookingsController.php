@@ -109,7 +109,7 @@ class bookingsController extends Controller
         $bookingVar->status = $request->get('status');
         $bookingVar->accepted = $request->get('accepted');
         $bookingVar->save();
-        return redirect('/bookings')->with('message','item has been updated successfully');
+        return redirect('/bookings')->with('message','Booking Request has been updated successfully');
     }
     public function updateA(BookingRequest $request, $id)
     {
@@ -117,7 +117,7 @@ class bookingsController extends Controller
         $bookingVar->accepted = 'A';
         $bookingVar->status = $bookingVar->status;      
         $bookingVar->save();
-        return redirect('/booking')->with('message','item has been updated successfully');
+        return redirect('/booking')->with('message','Booking Request has been accepted');
     }
     public function updateD(BookingRequest $request, $id)
     {
@@ -125,7 +125,7 @@ class bookingsController extends Controller
         $bookingVar->accepted = 'D';
         $bookingVar->status = $bookingVar->status;       
         $bookingVar->save();
-        return redirect('/booking')->with('message','item has been updated successfully');
+        return redirect('/booking')->with('message','Booking Request has been declined successfully');
     }
 
     /**
