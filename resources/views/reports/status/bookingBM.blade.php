@@ -1,6 +1,6 @@
 @include('layouts.top')
 
-        <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+     
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="./css/prettify-1.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
@@ -30,36 +30,19 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Status Report by Month</div>
-                   
-
-
-
-
-                            {{csrf_field()}}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input name="accepted" type="hidden" value="A">
-                            <input name="status" type="hidden" value="A">
-                            
-                            </form>
-
-
-
-
-
-
 
                     <div class="panel-body">
 
                     {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
-                    {{--{!! Form::open(array('route'=>'food.store')) !!}--}}
+
 <!-- Date Picker -->
                      <div class="container">
-                     <form method="post" action="{{ route('reportbymonth.datechange', ['datetimepicker6','datetimepicker7']) }}">
+                     <form method="post" action="{{ route('reportbymonth.datechange', ['startDate','endDate']) }}">
                      {{csrf_field()}}
                         <div class='col-md-4'>
                             <div class="form-group">
-                                <div class='input-group date' id='datetimepicker6'>
-                                    <input name="datetimepicker6" type='text' class="form-control" />
+                                <div class='input-group date' id='startDate'>
+                                    <input name="startDate" type='text' class="form-control" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -68,8 +51,8 @@
                         </div>
                         <div class='col-md-4'>
                             <div class="form-group">
-                                <div class='input-group date' id='datetimepicker7'>
-                                    <input name="datetimepicker7" type='text' class="form-control" />
+                                <div class='input-group date' id='endDate'>
+                                    <input name="endDate" type='text' class="form-control" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -82,18 +65,18 @@
 
                     <script type="text/javascript">
                         $(function () {
-                            $('#datetimepicker6').datetimepicker();
-                            $('#datetimepicker7').datetimepicker({
+                            $('#startDate').datetimepicker();
+                            $('#endDate').datetimepicker({
                                 useCurrent: false //Important! See issue #1075
                             });
-                            $("#datetimepicker6").on("dp.change", function (e) {
-                                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                            $("#startDate").on("dp.change", function (e) {
+                                $('#endDate').data("DateTimePicker").minDate(e.date);
                             });
-                            $("#datetimepicker7").on("dp.change", function (e) {
-                                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                            $("#endDate").on("dp.change", function (e) {
+                                $('#startDate').data("DateTimePicker").maxDate(e.date);
                             });
-                            $('#datetimepicker6').data('datetimepicker6').date();
-                            $('#datetimepicker7').data('datetimepicker7').date();                           
+                            $('#startDate').data('DateTimePicker').date();
+                            $('#endDate').data('DateTimePicker').date();                           
                         });
                     </script>
                     

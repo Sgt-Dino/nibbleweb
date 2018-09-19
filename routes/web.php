@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();
 
 
@@ -40,11 +44,11 @@ Route::patch('/updateBookingD/{id}', ['uses' => 'bookingsController@updateD', 'a
 
 Route::patch('/updateprofile/{id}', ['uses' => 'profileController@update', 'as' => 'profile.profile.update']);
 
-Route::get('/reportbymonthD/{startDate,endDate}',['as' => 'reportbymonth.datechange','uses'=> 'ReportController@datechange']);
+Route::get('/reportbymonthD/{startDate}{endDate}',['as' => 'reportbymonth.datechange','uses'=> 'ReportController@datechange']);
 Route::get('/dummydate',['as' => 'reportbymonth.dummydate','uses'=> 'ReportController@dummydate']);
 Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
 
-Route::get('/report/pdf', 'reports\ReportController@fun_pdf');
+//Route::get('/report/pdf', 'reports\ReportController@fun_pdf');
 
 Route::resource('questions', 'faqController');
 Route::resource('reportbymonth', 'ReportController');
@@ -53,6 +57,7 @@ Route::resource('booking','bookingsController');
 Route::resource('food','FoodController');
 Route::resource('home','bookingsTodayController');
 Route::resource('profile','ProfileController');
+Route::resource('specials','SpecialsController');
 
 //Route::patch('/report/chart',['uses' => 'ReportController@show', 'as' => 'reports.status.chart.show']);
 
@@ -62,7 +67,7 @@ Route::resource('profile','ProfileController');
 //});
 
 //Route::resource('home', 'HomeController@index');
-Route::resource('specials','SpecialsController');
+
 //Route::resource('category','CategoryController');
 
 //Route::get('/update', function(){
