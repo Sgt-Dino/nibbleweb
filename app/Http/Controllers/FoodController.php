@@ -42,8 +42,9 @@ class FoodController extends Controller
 
     public function catchange($id)
     {
+        $catid = Crypt::decrypt($id);
         $userId = Auth::id();
-         $foods = Food::all()->where('menucategoryid','=',$id);
+         $foods = Food::all()->where('menucategoryid','=',$catid);
          $categories = Category::all()->where('restaurantid','=',$userId);
          return view('menu.food',compact('foods','categories'));
 

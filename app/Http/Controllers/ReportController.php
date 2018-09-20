@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session; //pdf
-use App\Http\Controllers\Controller; //pdf
+//use App\Http\Controllers\Controller; //pdf
 use App\Bookings;
 use Auth;
-use DB;
+use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Redirect;
 use PDF;//pdf
 
@@ -76,16 +75,32 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($request)
+    public function report($startdate,$enddate)
     {
+
         $userId = Auth::id();
-        $request= DB::table('bookingrequest')
+        $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', 'startDate', 'endDate')
+            ->wherebetween('date', [Crypt::decrypt($startdate), Crypt::decrypt($enddate)])
             ->orderby('bookingrequest.status')
             ->get();
-        return view('reports.status.char', 'request');
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+    }
+
+    public function show($reportbymonth)
+    {
+        $startdate = $request->startdate;
+        $enddate = $request->enddate;
+
+        $userId = Auth::id();
+        $statusBM= DB::table('bookingrequest')
+            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+            ->where('bookingrequest.restaurantid','=',$userId)
+            ->wherebetween('date', [$startdate, $enddate])
+            ->orderby('bookingrequest.status')
+            ->get();
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
 
     /**

@@ -19,7 +19,7 @@
                                 <span class="caret"></span></button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                 @foreach($categories as $cat)
-                                <li role="presentation"><a role="menuitem" tabindex="0" href="{{ route('menu.food.cat', ['id' => $cat->menucategoryid]) }}">{{$cat->name}}</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="0" href="{{ route('menu.food.cat',['id' => Crypt::encrypt($cat->menucategoryid)]) }}">{{$cat->name}}</a></li>
                                 @endforeach
                                 </ul>
                             </div>

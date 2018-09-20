@@ -47,8 +47,23 @@
                                 {!! Form::text('enddate', null, ['required','class'=>'form-control',"placeholder" => "End Date", 'id' => 'calendar2']) !!}
                             </div>
                         </div>
+<?php
+$startdate ='2018/04/02';
+$enddate ='2018/05/03';
+?>
+
+<button class="btn btn-default" type="button"><a href="{{ route('reports.status.report', ['startdate' => $startdate , 'enddate' => $enddate]) }}">Button</a></button>
+
+<form method="post" action="{{ route('reports.status.report',['startdate' => $startdate, 'enddate' => $enddate]) }}">
+{{csrf_field()}}
+<input name="_method" type="hidden" value="PATCH">
+ <input name="sartdate" type="hidden" value='2018'>
+ <input name="enddate" type="hidden" value='2018'>
+ <button type ='submit' class="btn btn-sm btn-danger">Report This</button>
+</form>
 
                         <div class="form-group">
+                        {!! link_to_route('reports.status.report','Generate Report',['startdate' => Crypt::encrypt($startdate) , 'enddate' => Crypt::encrypt($enddate)]) !!}
                             {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
                         </div>
 

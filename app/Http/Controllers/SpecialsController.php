@@ -56,8 +56,36 @@ class SpecialsController extends Controller
         $start = $request->startdate;
         $end = $request->enddate;
         if ($start < $end)
-        {
+        {           
             Specials::create($request->all());
+
+            //call special id wat nounet create is
+            $SpecialidTable= DB::table('specials')           
+            ->select('specialid')
+            ->from('specials')
+            ->ORDERBY('specialid', 'DESC')
+            ->ORDERBY('specialid', 'LIMIT 1')
+            ->get();
+
+            $count = 0;
+            $array  = array($request->day1, $request->day2, $request->day3, $request->day4, $request->day5, $request->day6, $request->day7); 
+            foreach($array as $day)
+            {
+                $count = $count+1;
+                if($day = "1")
+                {
+                    //SpecialDay::create($request->all());
+                    //$dayid = $count
+                    //$specialid = $SpecialidTable->specialid(1);
+                }
+                else
+                if($day = "0")
+                {
+                    //nothing
+                }
+                
+            }
+
             return redirect('/specials')->with('message','Special has been succesfully created');
         }
         else{

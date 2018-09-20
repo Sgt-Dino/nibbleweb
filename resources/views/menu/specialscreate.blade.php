@@ -14,7 +14,6 @@
 
 {!! Form::open(array('route'=>'specials.store')) !!}
 
-{!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
                                 {!! Form::label('itemname','Add Special Name') !!}
                                 {!! Form::text('itemname',null,['required','class'=>'form-control']) !!}

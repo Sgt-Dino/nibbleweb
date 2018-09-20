@@ -19,23 +19,21 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Auth::routes();
 
+
+Route::get('/report/{startdate}/{enddate}',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
+Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
+Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
+Route::get('/statusbymonth/pdf', 'ReportController@fun_pdf');
+Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
+Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
+
+
+Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
+Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
 
 Route::patch('/updateTodayC/{id}', ['uses' => 'bookingsTodayController@updateC', 'as' => 'home.updateC']);
 Route::patch('/updateTodayM/{id}', ['uses' => 'bookingsTodayController@updateM', 'as' => 'home.updateM']);
-
-
-
-Route::get('/edit/{id}',
-['as' => 'menu.food.edit',
-'uses'=> 'FoodController@edit']);
-Route::get('/categoryedit/{id}',
-['as' => 'menu.category.edit',
-'uses'=> 'CategoryController@edit']);
-Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
-Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
-Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
 
 Route::patch('/updateRemove/{id}', ['uses' => 'CategoryController@updateRemove', 'as' => 'menu.Category.Remove']);
 
@@ -44,20 +42,16 @@ Route::patch('/updateBookingD/{id}', ['uses' => 'bookingsController@updateD', 'a
 
 Route::patch('/updateprofile/{id}', ['uses' => 'profileController@update', 'as' => 'profile.profile.update']);
 
-Route::get('/statusbymonth', ['uses' =>'ReportController@show', 'as' => 'reports.status.chart']);
+Auth::routes();
 Route::resource('reportbymonth', 'ReportController');
-Route::get('/statusbymonth/pdf', 'ReportController@fun_pdf');
-
 Route::resource('questions', 'faqController');
-
 Route::resource('category','CategoryController');
 Route::resource('booking','bookingsController');
 Route::resource('food','FoodController');
 Route::resource('home','bookingsTodayController');
 Route::resource('profile','ProfileController');
 Route::resource('specials','SpecialsController');
-
-Route::resource('help', 'helpController');
+//Route::resource('help', 'helpController');
 
 //Route::patch('/report/chart',['uses' => 'ReportController@show', 'as' => 'reports.status.chart.show']);
 
