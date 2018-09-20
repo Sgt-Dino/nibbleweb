@@ -17,10 +17,12 @@
 <script type="text/javascript">
     $(function() {
          $( "#calendar1" ).datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd',
+            autoclose: true
          });
          $( "#calendar2" ).datepicker({
-            format: 'yyyy-mm-dd'            
+            format: 'yyyy-mm-dd',
+            autoclose: true,
          });               
     });
 </script>

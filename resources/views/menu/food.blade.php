@@ -1,9 +1,4 @@
 @include('layouts.top')
-
-<!--Popover-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!--Popover-->
-
 <h1>Food</h1>
 <br>
 <!-- menu -->
@@ -29,7 +24,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col">
+                        <div rel="tooltip" title="Add new food" class="col">
                         {{ link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}
                         </div>
 
@@ -58,20 +53,9 @@
                     <div class="panel-body">
                         <table class="table table-hover table-striped">
                             <tr>
-                                <!--Popover-->
-                                <script>
-                                    $(document).ready(function(){
-                                        $('[data-toggle="popover"]').popover({
-                                            container: 'body'
-                                        });
-                                    });
-                                </script>
-                                <!--Popover-->
-
                                 <th>Name</th>
                                 <th>Menu</th>
                                 <th>Price</th>
-
                                 <!--Popover-->
                                 <th class="text-center" data-toggle="popover"  appendToBody="true" data-placement="top" title="Edit/Update Food" data-content="A specific food item can be edited or updated. Click on the 'edit' button for the specific food item you want to update.">Update</th>
                                 <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Delete Food" data-content="A specific food item can be deleted. Click on the 'delete' button for the specific food item you want to delete."> Delete</th>

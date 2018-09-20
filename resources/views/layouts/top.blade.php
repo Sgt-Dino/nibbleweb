@@ -20,6 +20,18 @@
     text-align:center;
 }
 </style>
+        <!--Popover-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover({
+                    container: 'body'
+                });
+            });
+        </script>
+        <!--Popover-->
+  
     </head>
     <body>
 
@@ -101,7 +113,7 @@
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">Register</a></li>
                                 @else
-                                <li><a href="#" rel="tooltip" title="Help will be coming soon...">Help</a></li>
+                                <li><a href={{url('help')}} rel="tooltip" title="Help">Help</a></li>
                                 
 
                                     <li><a href="{{ route('logout') }}"
