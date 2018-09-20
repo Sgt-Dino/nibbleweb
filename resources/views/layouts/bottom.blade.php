@@ -15,6 +15,7 @@
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                  });
+
                     $("#itemlist").click(function(e) {
                     $("#itemlist").removeClass("active");
                     $(e.target).addClass("active");

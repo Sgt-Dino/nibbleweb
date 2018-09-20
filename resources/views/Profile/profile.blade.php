@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Profile</h1>
+<br>
 <!-- Profile -->          
 <div class="container">
         <div class="row">

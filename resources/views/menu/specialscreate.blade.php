@@ -14,21 +14,48 @@
 
 {!! Form::open(array('route'=>'specials.store')) !!}
 
+{!! Form::open(array('route'=>'food.store')) !!}
+                            <div class="form-group">
+                                {!! Form::label('itemname','Add Special Name') !!}
+                                {!! Form::text('itemname',null,['required','class'=>'form-control']) !!}
+                            </div>                    
+
+                             <div class="form-group">
+                                {!! Form::label('itemdescription','Add Special Description') !!}
+                                {!! Form::text('itemdescription',null,['required','class'=>'form-control']) !!}
+                            </div>                       
+
+                             <div class="form-group">
+                                {!! Form::label('itemprice','Add Cost') !!}
+                                {!! Form::number('itemprice',null,['required','class'=>'form-control']) !!}
+                            </div>
+
+                                                 
+                        {!! Form::close() !!}
+
+<br>
+<table>
+<tr>
+<col width="300">
+<td>
 <div class="form-group">
     <div class='input-group'>
-    {!! Form::text('startdate', null, ['required','class'=>'form-control',"placeholder" => "Start Date", 'id' => 'calendar1']) !!}
+    <label>Start Date:</label>{!! Form::text('startdate', null, ['required','class'=>'form-control',"placeholder" => "Start Date", 'id' => 'calendar1']) !!}
     </div>
 </div>
-<br>
-<br>
-<br>
+
+</td>
+<td>
+</td><td>
 
 <div class="form-group">
     <div class='input-group'>
-    {!! Form::text('enddate', null, ['required','class'=>'form-control',"placeholder" => "End Date", 'id' => 'calendar2']) !!}
+    <label>End Date:</label>{!! Form::text('enddate', null, ['required','class'=>'form-control',"placeholder" => "End Date", 'id' => 'calendar2']) !!}
     </div>
 </div>
-
+</td>
+</tr>
+</table>
 <div class="form-group">
     {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
     <input class="btn btn-danger" type="button" value="Cancel" onclick="history.back()">
@@ -41,7 +68,7 @@
         <li>{{$error}}</li>
         @endforeach
         </ul>
-    @endif
+    @endif 
 
                 </div>
             </div>

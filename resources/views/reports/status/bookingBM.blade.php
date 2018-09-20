@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Report</h1>
+<br>
      
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="./css/prettify-1.0.css" rel="stylesheet">

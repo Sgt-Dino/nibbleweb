@@ -1,4 +1,6 @@
 @include('layouts.top')
+<h1>Category Create</h1>
+<br>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">

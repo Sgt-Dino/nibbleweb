@@ -11,7 +11,7 @@
                 <div class="panel-heading">Create Special</div>
             <div class="panel-body">
 
-{{ link_to_route('specials.create','Add new Category',null,['class'=>'btn btn-success']) }}
+{{ link_to_route('specials.create','Add new Special',null,['class'=>'btn btn-success']) }}
 
             </div>
             </div>

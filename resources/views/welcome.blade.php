@@ -10,6 +10,16 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link href="css/animate.css" rel="stylesheet"/>
+	<link href="css/waypoints.css" rel="stylesheet"/>
+	<script src="js/jquery.waypoints.min.js" type="text/javascript"></script>
+	<script src="js/waypoints.js" type="text/javascript"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -46,7 +56,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 150px;
             }
 
             .links > a {
@@ -79,12 +89,19 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                <section class="os-animation" data-os-animation="bounceInDown" data-os-animation-delay="0.2s">
+                <section class="os-animation" data-os-animation="rubberBand" data-os-animation-delay="0.9s">
                     Nibble
+                    </section>
+                    </section>
                 </div>
-
+                <section class="os-animation" data-os-animation="bounceInDown" data-os-animation-delay="0s">
+                <section class="os-animation" data-os-animation="swing" data-os-animation-delay="0.6s">
                 <div class="links">
-                    <a>Click your pick</a>
+                    <a>Half a Byte at a time</a>
                 </div>
+                </section>
+                </section>
             </div>
         </div>
     </body>

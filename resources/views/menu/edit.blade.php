@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Food Edit</h1>
+<br>
 
     <div class="container">
         <div class="row">

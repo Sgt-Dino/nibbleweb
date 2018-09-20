@@ -15,7 +15,11 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
 
-  
+  <style>
+      h1 {
+    text-align:center;
+}
+</style>
     </head>
     <body>
 

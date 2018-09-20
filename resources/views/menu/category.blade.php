@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Category</h1>
+<br>
 <!-- category -->
 <div class="container">
         <div class="row">

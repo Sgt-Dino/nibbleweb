@@ -138,8 +138,8 @@ i, span {
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    color: #7386D5;
+    background: #fff;
 }
 
 #itemlist.active{
@@ -172,7 +172,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #02aa8e;
 }
 
 ul.CTAs {

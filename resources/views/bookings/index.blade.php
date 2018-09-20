@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Bookings</h1>
+<br>
 <!-- Booking request -->
 <div class="container">
     <div class="row">
