@@ -1,35 +1,16 @@
 @include('layouts.top')
 <h1>Home</h1>
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-                     @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
 
-                            <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-8 col-md-offset-2">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">Dashboard</div>
-
-                                                <div class="panel-body">
-                                                    Welcome to Nibble !
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    @endif
-        </div>
-    </div>
-</div>
 
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+        @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                @endif
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <div class="col-md-10">
@@ -49,7 +30,7 @@
                         <th class="text-center">Guest Name</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">No of Guests</th>                       
-                        <th class="text-center">Status</th>
+                        <th class="text-center">Customer Response</th>
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Arrived" data-content="When a customer arrives at your restaurant, the customer must be 'Checked-in'. Nibble needs to know that the customer was there. This information will be stored and can be used by your restaurant.">Check-In</th>
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Missed" data-content="When a customer does not arrive for their booking, the customer 'Missed' their booking. Nibble needs to know that the customer was not there. This information will be stored and can be used by your restaurant.">Missed</th>
                     </tr>

@@ -116,7 +116,7 @@ class FoodController extends Controller
         $food->itemprice = $request->get('itemprice');
         $food->menucategoryid = $request->get('menucategoryid');
         $food->save();
-        return redirect('/food')->with('message','item has been updated successfully');
+        return redirect('/food')->with('message','Item has been updated successfully');
         
     }
 
@@ -130,7 +130,7 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id)->first();
         $food->delete();
-        return redirect('/food')->with('message','item has been deleted successfully');
+        return redirect('/food')->with('message','Item has been deleted successfully');
     }
 
     public function modify()
