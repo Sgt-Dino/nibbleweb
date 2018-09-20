@@ -58,8 +58,10 @@
                         <td class="text-left">{{$BookingsToday->time}}</td>
                         <td class="text-center">{{$BookingsToday->firstname}}</td>
                         <td class="text-center">{{$BookingsToday->phone}}</td>
-                        <td class="text-center">{{$BookingsToday->numofguests}}</td>                    
-                        <td class="text-center">{{$BookingsToday->status}}</td>
+                        <td class="text-center">{{$BookingsToday->numofguests}}</td>    
+                        @if($BookingsToday->status == 'P')                
+                        <td class="text-center">Pending</td>
+                        @endif
                         <td class="text-center">
                         @if(isset($BookingsToday)) 
                             <form method="post" action="{{ route('home.updateC', ['id' => $BookingsToday->bookingrequestid]) }}">
