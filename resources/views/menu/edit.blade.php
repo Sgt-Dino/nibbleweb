@@ -1,5 +1,5 @@
 @include('layouts.top')
-<h1>Food Edit</h1>
+<h1>Update Food</h1>
 <br>
 
     <div class="container">

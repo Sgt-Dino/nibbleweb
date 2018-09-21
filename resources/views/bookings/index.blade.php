@@ -11,8 +11,11 @@
                         </div>
                 @endif
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>Your Pending Booking Requests</h4></div>
+                <div class="panel-heading">Your Pending Booking Requests</div>
                 <div class="panel-body">
+                @if (!$bookingVar->first()) 
+                <h3>No Pending booking requests</h3>                      
+                @else
                     <table class="table table-hover table-striped">
                     <tr>
                         <th class="text-left">Date</th>
@@ -70,7 +73,8 @@
                     </tr>                                       
                     @endforeach
                     </table>
-                    </div>
+                @endif
+                </div>
             </div>
         </div>
     </div>
@@ -82,8 +86,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>Declined Booking Requests for this week</h4></div>
+                <div class="panel-heading">Declined Booking Requests for this week</div>
                 <div class="panel-body">
+                @if (!$bookingD->first()) 
+                <h3>No Declined Booking Requests for this week</h3>                      
+                @else
                     <table class="table table-hover table-striped">
                     <tr>
                         <th class="text-left">Date</th>
@@ -123,6 +130,7 @@
                     </tr>                                       
                     @endforeach
                     </table>
+                    @endif
                     </div>
             </div>
         </div>
@@ -134,8 +142,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>Accepted Booking Requests for this week</h4></div>
+                <div class="panel-heading">Accepted Booking Requests for this week</div>
                 <div class="panel-body">
+                @if (!$bookingA->first()) 
+                <h3>No Accepted Booking Requests for this week</h3>                      
+                @else
                     <table class="table table-hover table-striped">
                     <tr>
                         <th class="text-left">Date</th>
@@ -154,6 +165,7 @@
                     </tr>                                       
                     @endforeach
                     </table>
+                    @endif
                     </div>
             </div>
         </div>

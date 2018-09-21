@@ -22,8 +22,10 @@
                 </div>
 
                 <div class="panel-body">
-
-                    <table class="table table-hover table-striped">
+                @if (!$bookingTodayVar->first()) 
+                    <h3 align="center" >No Bookings for today</h3>                      
+                @else
+                <table class="table table-hover table-striped">
                     <tr>
 
                         <th class="text-left">Time</th>
@@ -34,8 +36,7 @@
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Arrived" data-content="When a customer arrives at your restaurant, the customer must be 'Checked-in'. Nibble needs to know that the customer was there. This information will be stored and can be used by your restaurant.">Check-In</th>
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Customer Missed" data-content="When a customer does not arrive for their booking, the customer 'Missed' their booking. Nibble needs to know that the customer was not there. This information will be stored and can be used by your restaurant.">Missed</th>
                     </tr>
-
-                    @foreach($bookingTodayVar as $BookingsToday)
+                    @foreach($bookingTodayVar as $BookingsToday)                    
                     <tr>
                         <td class="text-left">{{$BookingsToday->time}}</td>
                         <td class="text-center">{{$BookingsToday->firstname}}</td>
@@ -90,8 +91,10 @@
                         </td>
                     </tr>
                     @endforeach
-                    </table>
-                    </div>
+                    </table>                                           
+                @endif
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -102,11 +105,12 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <h3>Canceled Bookings for Today</h3>
+                Canceled Bookings for Today
                 </div>
-
                 <div class="panel-body">
-
+                @if (!$bookingTodayVar->first()) 
+                    <h3 align="center">No Canceled Bookings for today</h3>                      
+                @else
                     <table class="table table-hover table-striped">
                     <tr>
                         <th>Time</th>
@@ -125,7 +129,8 @@
                     @endforeach
                     @endif
                     </table>
-                    </div>
+                @endif
+                </div>
             </div>
         </div>
     </div>

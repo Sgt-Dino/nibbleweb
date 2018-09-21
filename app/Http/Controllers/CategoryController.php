@@ -21,15 +21,6 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        //12-06
-        /*
-        $foods = DB::table('menuitem')
-            ->join('menucategory', 'menucategory.menucategoryid', '=', 'menuitem.menucategoryid')
-            ->select('menuitem.itemname', 'menucategory.name', 'menuitem.itemprice')
-            ->get();
-        
-        return view('menu.food', ['foods'=>$foods]);
-        */
         $userId = Auth::id();
         $category= DB::table('menucategory')
             ->select('*')
@@ -43,8 +34,6 @@ class CategoryController extends Controller
             ->get();
          //$category = Category::all();
          return view('menu.category',compact('category','deleted'));
-         
-
     }
 
     /**
@@ -54,9 +43,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //Create a new category
         return view('menu.categorycreate');
-    
     }
 
     /**
@@ -65,9 +53,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Save category
     public function store(Request $request)
     {
-        //
         Category::create($request->all());
         $request->restaurantid = Auth::id();
         return redirect('/category')->with('message','Category has been succesfully added');
@@ -96,9 +84,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Sends to upadte page
     public function edit($id)
     {
-        //
         $cat = Category::findOrFail(Crypt::decrypt($id));
         return view('menu.categoryedit',compact('cat'));
     }
@@ -110,6 +98,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Update Category
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -122,24 +112,22 @@ class CategoryController extends Controller
         
     }
 
+    //Delete by changing active field
     public function updateRemove(Request $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->active = 'N';
         $category->save();
-        return redirect('/category')->with('message','Category has been successfully removed');
-
-        
+        return redirect('/category')->with('message','Category has been successfully removed');       
     }
 
+    //Retrieve deleted item
     public function updateRetrieve(Request $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->active = 'Y';
         $category->save();
-        return redirect('/category')->with('message','Category has been successfully retrieved');
-
-        
+        return redirect('/category')->with('message','Category has been successfully retrieved');       
     }
 
     /**

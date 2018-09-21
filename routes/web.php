@@ -31,6 +31,7 @@ Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchan
 
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
+Route::patch('/updateDelete/{id}', ['uses' => 'FoodController@updateRemove', 'as' => 'menu.food.Remove']);
 
 Route::patch('/updateTodayC/{id}', ['uses' => 'bookingsTodayController@updateC', 'as' => 'home.updateC']);
 Route::patch('/updateTodayM/{id}', ['uses' => 'bookingsTodayController@updateM', 'as' => 'home.updateM']);
