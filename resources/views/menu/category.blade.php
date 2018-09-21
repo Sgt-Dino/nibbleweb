@@ -4,7 +4,7 @@
 <!-- category -->
 <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
 
                 @if(Session::has('message'))
                         <div class="alert alert-success">
@@ -49,10 +49,7 @@
                             </ul>
                             @endif
                             @endif
-
-                                   
-                                    
-                                    </td>
+                             </td>
                                 </tr>
                             @endforeach
                         </table>
@@ -61,6 +58,53 @@
                 </div>
             </div>
         </div>
-    </div><!-- food -->
+    </div><!-- category -->
+
+<br>
+<br>
+    <!-- deleted -->
+<div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Deleted Categories</div>
+
+                    <div class="panel-body">
+                        <table class="table table-hover table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th class="text-center">Retrieve</th>
+                            </tr>
+
+                            @foreach($deleted as $del)
+                                <tr>
+                                    <td>{{$del->name}}</td>
+                                    <td>{{$del->description}}</td>
+                                    <td class="text-center">
+                                        @if(isset($del)) 
+                                        <form method="post" action="{{ route('menu.Category.Retrieve', ['id' => $del->menucategoryid]) }}">
+                                        {{csrf_field()}}
+                                        <input name="_method" type="hidden" value="PATCH">
+                                        <input name="active" type="hidden" value="Y">
+                                        <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Retrieve category">Retrieve</button>
+                                        </form>
+                                        @if ( count( $errors ) > 0 )
+                                        <ul class="aler alert-danger">
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
+                                        @endif                                                         
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- category -->
 
     @include('layouts.bottom')

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['restaurantname', 'phone', 'restauranttype', 'restaurantadmin', 'email', 'addressline1', 'subrub', 'websiteurl'];
+    protected $fillable = ['restaurantname', 'phone', 'restauranttype', 'restaurantadmin', 'gpslocation', 'email', 'addressline1', 'addressline2', 'subrub', 'websiteurl', 'active'];
     protected $table = 'restaurant';
     protected $primaryKey = 'restaurantid';
 }

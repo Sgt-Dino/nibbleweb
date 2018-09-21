@@ -36,8 +36,13 @@ class CategoryController extends Controller
             ->where('menucategory.restaurantid','=',$userId)
             ->where('menucategory.active','=','Y')
             ->get();
+        $deleted= DB::table('menucategory')
+            ->select('*')
+            ->where('menucategory.restaurantid','=',$userId)
+            ->where('menucategory.active','=','N')
+            ->get();
          //$category = Category::all();
-         return view('menu.category',compact('category'));
+         return view('menu.category',compact('category','deleted'));
          
 
     }
@@ -123,6 +128,16 @@ class CategoryController extends Controller
         $category->active = 'N';
         $category->save();
         return redirect('/category')->with('message','Category has been successfully removed');
+
+        
+    }
+
+    public function updateRetrieve(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->active = 'Y';
+        $category->save();
+        return redirect('/category')->with('message','Category has been successfully retrieved');
 
         
     }

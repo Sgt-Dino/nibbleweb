@@ -36,6 +36,7 @@ Route::patch('/updateTodayC/{id}', ['uses' => 'bookingsTodayController@updateC',
 Route::patch('/updateTodayM/{id}', ['uses' => 'bookingsTodayController@updateM', 'as' => 'home.updateM']);
 
 Route::patch('/updateRemove/{id}', ['uses' => 'CategoryController@updateRemove', 'as' => 'menu.Category.Remove']);
+Route::patch('/updateRetrieve/{id}', ['uses' => 'CategoryController@updateRetrieve', 'as' => 'menu.Category.Retrieve']);
 
 Route::patch('/updateBookingA/{id}', ['uses' => 'bookingsController@updateA', 'as' => 'bookings.index.updateA']);
 Route::patch('/updateBookingD/{id}', ['uses' => 'bookingsController@updateD', 'as' => 'bookings.index.updateD']);
