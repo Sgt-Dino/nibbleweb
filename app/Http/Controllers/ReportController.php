@@ -25,8 +25,7 @@ class ReportController extends Controller
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
-            //->wherebetween('date', ['#startDate', '#endDate'])
-            ->orderby('bookingrequest.status')
+            ->orderby('bookingrequest.status', 'bookingrequest.date')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
