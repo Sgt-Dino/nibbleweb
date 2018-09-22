@@ -21,7 +21,7 @@ Route::get('/test', function () {
 
 
 
-Route::get('/report/{startdate}/{enddate}',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
+Route::get('/report',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
 Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
 Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
 Route::get('/statusbymonth/pdf', 'ReportController@fun_pdf');

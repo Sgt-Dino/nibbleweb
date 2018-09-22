@@ -9,6 +9,7 @@ use Auth;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Redirect;
 use PDF;//pdf
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -22,13 +23,15 @@ class ReportController extends Controller
     {
         //MUST UNDO!!!
         $userId = Auth::id();
+        $date1 = '2018-02-02';
+        $date2 = '2018-10-20';
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
             //->wherebetween('date', ['#startDate', '#endDate'])
             ->orderby('bookingrequest.status')
             ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM,'date1'=>$date1,'date2'=>$date2]);
     }
 
     public function fun_pdf()
@@ -75,14 +78,14 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function report($startdate,$enddate)
+    public function report(Request $request)
     {
-
+       
         $userId = Auth::id();
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', [Crypt::decrypt($startdate), Crypt::decrypt($enddate)])
+            ->wherebetween('date', [Carbon::parse($request->calendar1), Carbon::parse($request->calendar2)])
             ->orderby('bookingrequest.status')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
