@@ -23,15 +23,13 @@ class ReportController extends Controller
     {
         //MUST UNDO!!!
         $userId = Auth::id();
-        $date1 = '2018-02-02';
-        $date2 = '2018-10-20';
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
             //->wherebetween('date', ['#startDate', '#endDate'])
             ->orderby('bookingrequest.status')
             ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM,'date1'=>$date1,'date2'=>$date2]);
+        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
 
     public function fun_pdf()
