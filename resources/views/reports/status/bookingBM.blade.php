@@ -32,9 +32,10 @@
                                 </div>     
 
                                 <div class="form-group">
-                                <label>Status</label>
+                                <label>Customer Status</label>
                                 <select name="filter" class="form-control">                                              
-                                <option selected name="filterType" value="1">Checked-In</option>                       
+                                <option selected name="filterType" value="1">All</option>                       
+                                <option name="filterType" value="2">Checked-In</option>
                                 <option name="filterType" value="2">Missed</option>
                                 </select>  
                                 </div>   
