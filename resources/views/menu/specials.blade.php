@@ -1,4 +1,6 @@
 @include('layouts.top')
+<h1>Specials</h1>
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -8,7 +10,7 @@
                         </div>
                 @endif
             <div class="panel panel-default">
-                <div class="panel-heading">Create Special</div>
+                <div class="panel-heading">Specials</div>
             <div class="panel-body">
 
 {{ link_to_route('specials.create','Add new Special',null,['class'=>'btn btn-success']) }}

@@ -1,5 +1,4 @@
 @include('layouts.top')
-
 <!-- jQuery CDN -->
 <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -23,49 +22,61 @@
 
 <!-- Date Picker -->
 
+
+                                <div class="form-group">
+                                <label>Filter By</label>
+                                <select name="filter" class="form-control">                                              
+                                <option selected name="filterRange" value="1">Day</option>                       
+                                <option name="filterRange" value="2">Month</option>
+                                </select>  
+                                </div>     
+
+                                <div class="form-group">
+                                <label>Customer Status</label>
+                                <select name="filter" class="form-control">                                              
+                                <option selected name="filterType" value="1">All</option>                       
+                                <option name="filterType" value="2">Checked-In</option>
+                                <option name="filterType" value="2">Missed</option>
+                                </select>  
+                                </div>   
+                     
+    <form method="get" action="{{'report'}}"> 
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">           
                 <script type="text/javascript">
                     $(function() {
                         $( "#calendar1" ).datepicker({
                             format: 'yyyy-mm-dd',
-                            autoclose: true
+                            autoclose: true                          
                         });
                         $( "#calendar2" ).datepicker({
                             format: 'yyyy-mm-dd',
                             autoclose: true,
                         });
+                        var startdate = $( "#calendar1" ).datepicker( "getDate" );
+                        var enddate = $( "#calendar1" ).datepicker( "getDate" );
                     });
                 </script>
-
-                        <div class="form-group">
+                            <div class="form-group">
+                            <label>Date From</label>
                             <div class='input-group'>
-                                {!! Form::text('startdate', null, ['required','class'=>'form-control',"placeholder" => "Start Date", 'id' => 'calendar1']) !!}
-                            </div>
-                        </div>
+						  <div>
+							<input required type="text" id="calendar1" name="calendar1" class="form-control" value="" placeholder="Start Date">
+						  </div>
+                          </div>
+                          </div>
 
-                        <div class="form-group">
+                          <div class="form-group">
+                            <label>Date To</label>
                             <div class='input-group'>
-                                {!! Form::text('enddate', null, ['required','class'=>'form-control',"placeholder" => "End Date", 'id' => 'calendar2']) !!}
-                            </div>
-                        </div>
-<?php
-$startdate ='2018/04/02';
-$enddate ='2018/05/03';
-?>
-
-<button class="btn btn-default" type="button"><a href="{{ route('reports.status.report', ['startdate' => $startdate , 'enddate' => $enddate]) }}">Button</a></button>
-
-<form method="post" action="{{ route('reports.status.report',['startdate' => $startdate, 'enddate' => $enddate]) }}">
-{{csrf_field()}}
-<input name="_method" type="hidden" value="PATCH">
- <input name="sartdate" type="hidden" value='2018'>
- <input name="enddate" type="hidden" value='2018'>
- <button type ='submit' class="btn btn-sm btn-danger">Report This</button>
-</form>
-
-                        <div class="form-group">
-                        {!! link_to_route('reports.status.report','Generate Report',['startdate' => Crypt::encrypt($startdate) , 'enddate' => Crypt::encrypt($enddate)]) !!}
-                            {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
-                        </div>
+						  <div>
+							<input required type="text" id="calendar2" name="calendar2" class="form-control" value="" placeholder="End Date">
+						  </div>
+                          </div>
+                          </div>
+                          
+                          <button class="btn btn-primary" type="submit">Generate Report</button>
+                </form>
+                <br>                                              
 
 <!-- Date Picker -->
 

@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Add Special</h1>
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">

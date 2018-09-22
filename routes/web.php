@@ -21,7 +21,7 @@ Route::get('/test', function () {
 
 
 
-Route::get('/report/{startdate}/{enddate}',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
+Route::get('/report',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
 Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
 Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
 Route::get('/statusbymonth/pdf', 'ReportController@fun_pdf');
@@ -31,11 +31,13 @@ Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchan
 
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
+Route::patch('/updateDelete/{id}', ['uses' => 'FoodController@updateRemove', 'as' => 'menu.food.Remove']);
 
 Route::patch('/updateTodayC/{id}', ['uses' => 'bookingsTodayController@updateC', 'as' => 'home.updateC']);
 Route::patch('/updateTodayM/{id}', ['uses' => 'bookingsTodayController@updateM', 'as' => 'home.updateM']);
 
 Route::patch('/updateRemove/{id}', ['uses' => 'CategoryController@updateRemove', 'as' => 'menu.Category.Remove']);
+Route::patch('/updateRetrieve/{id}', ['uses' => 'CategoryController@updateRetrieve', 'as' => 'menu.Category.Retrieve']);
 
 Route::patch('/updateBookingA/{id}', ['uses' => 'bookingsController@updateA', 'as' => 'bookings.index.updateA']);
 Route::patch('/updateBookingD/{id}', ['uses' => 'bookingsController@updateD', 'as' => 'bookings.index.updateD']);

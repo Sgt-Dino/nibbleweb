@@ -9,6 +9,7 @@ use Auth;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Redirect;
 use PDF;//pdf
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -74,14 +75,14 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function report($startdate,$enddate)
+    public function report(Request $request)
     {
-
+       
         $userId = Auth::id();
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', [Crypt::decrypt($startdate), Crypt::decrypt($enddate)])
+            ->wherebetween('date', [Carbon::parse($request->calendar1), Carbon::parse($request->calendar2)])
             ->orderby('bookingrequest.status')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);

@@ -1,5 +1,5 @@
 @include('layouts.top')
-<h1>Food Edit</h1>
+<h1>Update Food</h1>
 <br>
 
     <div class="container">
@@ -18,7 +18,7 @@
        <input name="_method" type="hidden" value="PATCH">      
       <label>Food Name</label>
       <div>     
-      <input required type="text"class="form-control" name="itemname" value={{$food->itemname}}>
+      <input required type="text"class="form-control" name="itemname" value="{{$food->itemname}}">
       </div>      
     </div>
 
@@ -26,7 +26,11 @@
     <label>Category</label>
     <select name="menucategoryid" class="form-control">
     @foreach($categories as $cat)
-    <option name="menucategoryid" value={{$cat->menucategoryid}}>{{$cat->name}}</option>
+    @if($cat->menucategoryid==$food->menucategoryid)
+    <option selected name="menucategoryid" value="{{$cat->menucategoryid}}">{{$cat->name}}</option>
+    @else
+    <option name="menucategoryid" value="{{$cat->menucategoryid}}">{{$cat->name}}</option>
+    @endif
     @endforeach
     </select>
 </div>                             
@@ -34,7 +38,7 @@
 <div class="form-group">
       <label>Item Description</label>
       <div>
-      <input required type="text" name="itemdescription" class="form-control" value={{$food->itemdescription}}>
+      <input required type="text" name="itemdescription" class="form-control" value="{{$food->itemdescription}}">
       </div>
     </div>
 

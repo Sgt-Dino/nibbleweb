@@ -33,6 +33,7 @@ class FoodController extends Controller
          ->select('*')
          ->from('menuitem','menucategory')
          ->where('menucategory.restaurantid','=',$userId)
+         ->where('menuitem.active','=','Y')
          ->get();
 
          $categories = Category::all()->where('restaurantid','=',$userId);
@@ -111,7 +112,6 @@ class FoodController extends Controller
     {
 
         $food = Food::findOrFail($id);
-
         $food->itemname = $request->get('itemname');
         $food->itemdescription = $request->get('itemdescription');
         $food->itemprice = $request->get('itemprice');
@@ -127,6 +127,8 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Delete an item for real
     public function destroy(Food $id)
     {
         $food = Food::findOrFail($id)->first();
@@ -138,4 +140,23 @@ class FoodController extends Controller
     {
         return view('menu.edit');
     }
+
+    //Delete by changing active field
+    public function updateRemove(Request $request, $id)
+    {
+        $food = Food::findOrFail($id);
+        $food->active = 'N';
+        $food->save();
+        return redirect('/food')->with('message','Item has been successfully removed');
+    }
+
+    //Retrieve deleted item
+    public function updateRetrieve(Request $request, $id)
+    {
+        $food = Food::findOrFail($id);
+        $food->active = 'Y';
+        $food->save();
+        return redirect('/food')->with('message','Item has been successfully retrieved');      
+    }
+
 }

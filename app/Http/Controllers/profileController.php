@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Profile;
 use DB, Session, Crypt, Hash;
 use Illuminate\Support\Facades\Input;
-
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -21,17 +21,8 @@ class ProfileController extends Controller
     }
     public function index()
     {
-        //12-06
-        /*
-        $foods = DB::table('menuitem')
-            ->join('menucategory', 'menucategory.menucategoryid', '=', 'menuitem.menucategoryid')
-            ->select('menuitem.itemname', 'menucategory.name', 'menuitem.itemprice')
-            ->get();
-        
-        return view('menu.food', ['foods'=>$foods]);
-        */
-        
-         $profiles = Profile::all();
+        $userId = Auth::id();
+         $profiles = Profile::all()->where('restaurantid','=',$userId);
          $subs = DB::select('select * from suburb');
          return view('Profile.profile',compact('profiles','subs'));
          //return view('menu.food',compact('profiles'));
@@ -94,14 +85,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $profile = Profile::findOrFail($id);
 
         $profile->restaurantname = $request->get('restaurantname');
         $profile->phone = $request->get('phone');
         $profile->restauranttype = $request->get('restauranttype');
+        $profile->gpslocation = $request->get('gpslocation');
         $profile->email = $request->get('email');
         $profile->suburbid = $request->get('suburbid');
         $profile->addressline1 = $request->get('addressline1');
+        $profile->addressline2 = $request->get('addressline2');
         $profile->websiteurl = $request->get('websiteurl');
         $profile->save();
         return redirect('/profile')->with('message','item has been updated successfully');
