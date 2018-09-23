@@ -13,11 +13,11 @@
                 @endif
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <div class="col-md-10">
-                <h3>Bookings for Today</h3>
-                </div>
+                    <div class="col-md-10">
+                        <h3>Bookings for Today</h3>
+                    </div>
                 <div class="col">
-                <h3><?php $todayDate = date("Y-m-d");echo $todayDate?></h3>
+                    <h3><?php $todayDate = date("Y-m-d");echo $todayDate?></h3>
                 </div>
                 </div>
 
