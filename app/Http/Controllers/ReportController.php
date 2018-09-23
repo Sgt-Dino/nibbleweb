@@ -33,13 +33,24 @@ class ReportController extends Controller
 
     public function fun_pdf()
     {
-        $pdf = PDF::loadView('reports.status.bookingBM'); //file path to pdf you want to print
-        return $pdf->download('reports.pdf');
+        $pdf = PDF::loadView('reports.status.test'); //file path to pdf you want to print
+        return $pdf->download('report.pdf');
     }
 
-    public function create()
+    public function createchart()
     {
-        //
+        $data= DB::table('bookingrequest')
+            ->select(
+                DB::raw('status as status'),
+                DB::raw('count(*) as number'))
+            ->groupBy('status')
+            ->get();
+        $array[] =['Status', 'Number'];
+        foreach($data as $key => $value)
+        {
+            $array[++$key] = [$value->status, $value->number];
+        }
+        return view('reports.status.chart')->with('status',json_encode($array));
     }
 
     /**

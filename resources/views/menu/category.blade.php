@@ -20,8 +20,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th class="text-center">Update</th>
-                                <th class="text-center">Delete</th>
+                                <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Edit/Update Category" data-content="A specific category item can be edited or updated. Click on the 'edit' button for the specific category item you want to update.">Update</th>
+                                <th class="text-center" data-toggle="popover"  appendToBody="true" data-placement="top" title="Delete Category" data-content="A specific category item can be deleted. Click on the 'delete' button for the specific category item you want to delete.">Delete</th>
                             </tr>
 
                             @foreach($category as $cat)
@@ -74,7 +74,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th class="text-center">Retrieve</th>
+                                <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Retrieve Category" data-content="If you want to reinstate a category that was previously deleted, choose the option to 'retrieve' the category.">Retrieve</th>
                             </tr>
 
                             @foreach($deleted as $del)
