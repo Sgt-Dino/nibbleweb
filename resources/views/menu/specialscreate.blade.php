@@ -57,7 +57,7 @@
 </tr>
 </table>
 <div class="form-group">
-    {!! Form::button('create',['type'=>'submit','class'=>'btn btn-primary']) !!}
+    {!! Form::button('Create',['type'=>'submit','class'=>'btn btn-primary']) !!}
     <input class="btn btn-danger" type="button" value="Cancel" onclick="history.back()">
 </div>                         
 {!! Form::close() !!}

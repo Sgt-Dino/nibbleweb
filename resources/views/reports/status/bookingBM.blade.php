@@ -1,4 +1,5 @@
 @include('layouts.top')
+
 <!-- jQuery CDN -->
 <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -21,32 +22,30 @@
                     {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
 
 <!-- Date Picker -->
-
-
                                 <div class="form-group">
                                 <label>Filter By</label>
-                                <select name="filter" class="form-control">                                              
-                                <option selected name="filterRange" value="1">Day</option>                       
+                                <select name="filter" class="form-control">
+                                <option selected name="filterRange" value="1">Day</option>
                                 <option name="filterRange" value="2">Month</option>
-                                </select>  
-                                </div>     
+                                </select>
+                                </div>
 
                                 <div class="form-group">
                                 <label>Customer Status</label>
-                                <select name="filter" class="form-control">                                              
-                                <option selected name="filterType" value="1">All</option>                       
+                                <select name="filter" class="form-control">
+                                <option selected name="filterType" value="1">All</option>
                                 <option name="filterType" value="2">Checked-In</option>
                                 <option name="filterType" value="2">Missed</option>
-                                </select>  
-                                </div>   
-                     
-    <form method="get" action="{{'report'}}"> 
- <input type="hidden" name="_token" value="{{ csrf_token() }}">           
+                                </select>
+                                </div>
+
+    <form method="get" action="{{'report'}}">
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <script type="text/javascript">
                     $(function() {
                         $( "#calendar1" ).datepicker({
                             format: 'yyyy-mm-dd',
-                            autoclose: true                          
+                            autoclose: true
                         });
                         $( "#calendar2" ).datepicker({
                             format: 'yyyy-mm-dd',
@@ -73,10 +72,10 @@
 						  </div>
                           </div>
                           </div>
-                          
+
                           <button class="btn btn-primary" type="submit">Generate Report</button>
                 </form>
-                <br>                                              
+                <br>
 
 <!-- Date Picker -->
 
@@ -98,13 +97,13 @@
                                 </tr>
                             @endforeach
                         </table>
-                        <a href="{{route('reports.status.chart')}}"></a><button class="btn btn-sm btn-primary">Chart</button>
+                        <a href="{{url('/statuschart')}}"></a><button class="btn btn-sm btn-primary">Chart</button>
 
                         {{--{{ link_to_route('/statusbymonth','chart',['class'=>'btn btn-success']) }}--}}
 
                         {{--{{TRYING this! link_to_route('food.create','Add new item',null,['class'=>'btn btn-success']) }}--}}
 
-                        <a href="{{url('/statusbymonth/pdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
+                        <a href="{{url('/pdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
 
                     </div>
                 </div>
