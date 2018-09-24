@@ -37,6 +37,7 @@ class bookingsTodayController extends Controller
             ->where('bookingrequest.status','<>','N')
             ->where('bookingrequest.status','<>','C')
             ->where('bookingrequest.status','<>','M')
+            ->where('bookingrequest.accepted','=','Y')
             ->ORDERBY('bookingrequest.time', 'ASC')
             ->get();
             $bookingsCanceled= DB::table('bookingrequest')

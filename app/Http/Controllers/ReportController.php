@@ -33,7 +33,7 @@ class ReportController extends Controller
 
     public function fun_pdf()
     {
-        $pdf = PDF::loadView('reports.status.bookingBM'); //file path to pdf you want to print
+        $pdf = PDF::loadView('reports.status.test'); //file path to pdf you want to print
         return $pdf->download('report.pdf'); //the name of the file you want to print
     }
 
