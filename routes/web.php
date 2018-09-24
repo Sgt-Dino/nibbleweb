@@ -22,6 +22,8 @@ Route::get('/test', function () {
 
 
 Route::get('/report',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
+Route::get('customermissed', 'reportcustController@statDecline');
+Route::get('customercheckedin', 'reportcustController@statCheckedin');
 Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
 Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
 Route::get('/pdf', ['as' =>'report.pdf', 'uses'=> 'ReportController@fun_pdf']);

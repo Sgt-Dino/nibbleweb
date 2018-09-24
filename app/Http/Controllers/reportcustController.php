@@ -27,6 +27,28 @@ class reportcustController extends Controller
         return view('reports.customer.pendingCustomer',['cust' =>$cust]);
     }
 
+    public function statDecline()
+    {
+        $missed=DB::table('bookingrequest')
+            ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
+            ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
+            ->where('bookingrequest.status', '=' , 'M')
+            ->orderby('bookingrequest.date')
+            ->get();
+        return view('reports.customer.customermissed',['missed' =>$missed]);
+    }
+
+    public function statCheckedin()
+    {
+        $check=DB::table('bookingrequest')
+            ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
+            ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
+            ->where('bookingrequest.status', '=' , 'C')
+            ->orderby('bookingrequest.date')
+            ->get();
+        return view('reports.customer.customercheckedin',['check' =>$check]);
+    }
+
     public function loadpdf($cust)
     {
         $pdf = PDF::loadView('reports.customer.toptenCustomer', ['cust' =>$cust]); //file path to pdf you want to print
