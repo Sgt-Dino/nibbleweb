@@ -35,7 +35,7 @@
                         </ul>
                     </nav>
                     <table>
-                        <th align="right">Amount pending: &nbsp {{$key}}</th>
+                        <th align="right">Amount pending: &nbsp {{$key + 1}}</th>
                     </table>
                     <hr>
                     <a href="{{url('/customerpdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
