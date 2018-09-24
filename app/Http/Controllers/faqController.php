@@ -23,6 +23,7 @@ class faqController extends Controller
     {
         $question=DB::table('frequently_asked_question')
             ->select('frequently_asked_question.question', 'frequently_asked_question.answer')
+            ->where('frequently_asked_question.platform', '=', 'W')
             ->orderby('frequently_asked_question.question')
             ->get();
         return view('FAQ.questions',['question'=>$question]);

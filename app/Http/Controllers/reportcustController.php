@@ -51,7 +51,7 @@ class reportcustController extends Controller
 
     public function loadpdf($cust)
     {
-        $pdf = PDF::loadView('reports.customer.toptenCustomer', ['cust' =>$cust]); //file path to pdf you want to print
+        $pdf = PDF::loadView('reports.customer.pendingCustomer', ['cust' =>$cust]); //file path to pdf you want to print
         return $pdf->download('customerReport.pdf'); //the name of the file you want to print
     }
 
