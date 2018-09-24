@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Http\Controllers\Controller; //pdf
+use App\Http\Controllers\Controller; //pdf
 use App\Bookings;
 use Auth;
 use DB, Session, Crypt, Hash;
@@ -33,11 +33,11 @@ class ReportController extends Controller
 
     public function fun_pdf()
     {
-        $pdf = PDF::loadView('reports.status.test'); //file path to pdf you want to print
-        return $pdf->download('report.pdf');
+        $pdf = PDF::loadView('reports.status.bookingBM'); //file path to pdf you want to print
+        return $pdf->download('report.pdf'); //the name of the file you want to print
     }
 
-    public function createchart()
+    public function piechart()
     {
         $data= DB::table('bookingrequest')
             ->select(
@@ -45,12 +45,12 @@ class ReportController extends Controller
                 DB::raw('count(*) as number'))
             ->groupBy('status')
             ->get();
-        $array[] =['Status', 'Number'];
-        foreach($data as $key => $value)
+        $user =array();
+        foreach($data as $value)
         {
-            $array[++$key] = [$value->status, $value->number];
+            $user[$value->status] = (int)$value->number;
         }
-        return view('reports.status.chart')->with('status',json_encode($array));
+        return view('chart',compact('user'));
     }
 
     /**
@@ -113,6 +113,7 @@ class ReportController extends Controller
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

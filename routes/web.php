@@ -25,7 +25,9 @@ Route::get('/report',['as' => 'reports.status.report','uses'=> 'ReportController
 Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
 Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
 Route::get('/pdf', ['as' =>'report.pdf', 'uses'=> 'ReportController@fun_pdf']);
-Route::get('/statuschart', ['uses' =>'ReportController@create', 'as' => 'reports.status.chart']);
+Route::get('/customerpdf', ['as' =>'customerReport.pdf', 'uses'=> 'reportcustController@loadpdf']);
+//Route::get('/statuschart', ['uses' =>'ReportController@createchart', 'as' => 'reports.status.chart']);
+Route::get('google-piechart', array('as' => 'chart.piechart', 'uses' => 'ReportController@piechart'));
 Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
 
 
@@ -46,6 +48,7 @@ Route::patch('/updateprofile/{id}', ['uses' => 'profileController@update', 'as' 
 
 Auth::routes();
 Route::resource('reportbymonth', 'ReportController');
+Route::resource('customerreport', 'reportcustController');
 Route::resource('questions', 'faqController');
 Route::resource('category','CategoryController');
 Route::resource('booking','bookingsController');

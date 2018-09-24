@@ -1,7 +1,6 @@
 <html>
   <head>
 
-<div class="panel-body">
 {{--{!! Form::open(array('route'=>'food.store')) !!}--}}
 {{--{!! Form::open(array('action'=>'ReportController@create')) !!}--}}
     {{--<form method="post" action="{{url('/reportbymonth/statuschartt')}}">--}}
@@ -10,30 +9,40 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
 
-        var analytics = <?php echo $status; ?>
-
-        // Load the Visualization API and the corechart package.
-        //use upcoming to test the charts Google is about to release
+            // Load the Visualization API and the corechart package.
+            //use upcoming to test the charts Google is about to release
             google.charts.load('current', {'packages':['corechart']});
+
             google.charts.setOnLoadCallback(drawChart);
 
-
-
-          // Set a callback to run when the Google Visualization API is loaded.
-
-            //google.charts.setOnLoadCallback(drawChart);
-
-          // Callback that creates and populates a data table,
-          // instantiates the pie chart, passes in the data and
-          // draws it.
           function drawChart() {
 
-              var data = new google.visualization.araayToDataTable(analytics);
-              var options= {
-                  title: 'Percentage of Checked-in and Missed Booking Requests'
-              };
-              var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
-              chart.draw(data,options);
+              var record ={!! json_encode($user) !!};
+              console.log(record);
+
+              //create table
+            var data= new google.visualization.DataTable();
+            data.addColumn('int', 'Status');
+            data.addColumn('number', 'Total Status');
+            for(var k in record){
+                var v = record[k];
+
+                data.addRow([k,v]);
+                console.log(v);
+            }
+            var options ={
+                title: 'status',
+                is3D: true,
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data,options);
+
+              // var data = new google.visualization.araayToDataTable(analytics);
+              // var options= {
+              //     title: 'Percentage of Checked-in and Missed Booking Requests'
+              // };
+              // var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+              // chart.draw(data,options);
 
 
 
@@ -60,7 +69,7 @@
 
 
     {{--{!! Form::close() !!}--}}
-</div>
+
   </head>
           <div class="container">
               <div class="row">
@@ -72,8 +81,6 @@
                               <div id="pie_chart" style="width:750px; height:450px;">
 
                               </div>
-
-
 
                           </div>
                       </div>
