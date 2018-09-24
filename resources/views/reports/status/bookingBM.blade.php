@@ -16,11 +16,8 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Status Report by Month</div>
-
                     <div class="panel-body">
-
                     {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
-
 <!-- Date Picker -->
                                 <div class="form-group">
                                 <label>Filter By</label>

@@ -64,8 +64,8 @@
                         </a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href={{url ('customerreport')}}>Customer reports</a></li>
-                            <li><a href= {{ url('reportbymonth') }}>Status Reports</a></li>
-                            <li><a href="#">Other Reports</a></li>
+                            <li><a href={{ url('reportbymonth')}}>Status Reports</a></li>
+                            <li><a href={{ url('reviewreport')}}>Review Reports</a></li>
                         </ul>
                     </li>
                     <li>
