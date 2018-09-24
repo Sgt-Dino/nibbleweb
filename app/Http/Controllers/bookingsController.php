@@ -37,7 +37,7 @@ class bookingsController extends Controller
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->where('bookingrequest.accepted','=','D')
+            ->where('bookingrequest.accepted','=','N')
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
@@ -45,7 +45,7 @@ class bookingsController extends Controller
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->where('bookingrequest.accepted','=','A')
+            ->where('bookingrequest.accepted','=','Y')
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
@@ -114,7 +114,7 @@ class bookingsController extends Controller
     public function updateA(BookingRequest $request, $id)
     {
         $bookingVar = Bookings::findOrFail($id);
-        $bookingVar->accepted = 'A';
+        $bookingVar->accepted = 'Y';
         $bookingVar->status = $bookingVar->status;      
         $bookingVar->save();
         return redirect('/booking')->with('message','Booking Request has been accepted');
@@ -122,7 +122,7 @@ class bookingsController extends Controller
     public function updateD(BookingRequest $request, $id)
     {
         $bookingVar = Bookings::findOrFail($id);
-        $bookingVar->accepted = 'D';
+        $bookingVar->accepted = 'N';
         $bookingVar->status = $bookingVar->status;       
         $bookingVar->save();
         return redirect('/booking')->with('message','Booking Request has been declined successfully');
