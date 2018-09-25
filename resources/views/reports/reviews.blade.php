@@ -39,7 +39,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    <a href="{{url('/reviewpdf')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
+                    <a href="{{url('/reviewpdf/{$reviews}')}}"><button class="btn btn-sm btn-primary">PDF</button></a>
                 </div>
             </div>
         </div>
