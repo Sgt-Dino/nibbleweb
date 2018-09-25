@@ -26,9 +26,11 @@
 
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Accept Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been accepted, a notification will be sent to the customer. When the day comes of that specific booking request, the booking will appear on the home screen.">Accept</th>
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Decline Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been declined, a notification will be sent to the customer. Declined requests are displayed below.">Decline</th>
-                        <th class="text-center">View Comment</th>
+             
                     </tr>
-                    @foreach($bookingVar as $Bookings)                   
+                    <?php $count = 0; ?>
+                    @foreach($bookingVar as $Bookings) 
+                    <?php $count = $count+1; ?>                  
                     <tr>
                         <td align="left">{{$Bookings->date}}</td>
                         <td align="centre">{{$Bookings->time}}</td>
@@ -71,20 +73,7 @@
                             @endif
                             @endif                         
                         </td>
-                        <td align="center">
-                            
-                            <a class="btn btn-primary" data-toggle="collapse" href="#comment" role="button" aria-expanded="false" aria-controls="comment">
-                               href
-                            </a>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment">
-                                +
-                            </button>
-                            <div class="collapse" id="comment">
-                                <div class="card card-body">
-                                    This is a test to show me if it works{{$Bookings->comment}}
-                                </div>
-                            </div>
-                        </td>
+                        
                     </tr>
                     @endforeach
                     </table>

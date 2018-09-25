@@ -25,15 +25,15 @@
                     <div class="panel-body">
                     {{--{!! Form::open(array('route'=>'reports.status.chart')) !!}--}}
 <!-- Date Picker -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                 <label>Filter By</label>
                                 <select name="filter" class="form-control">
                                 <option selected name="filterRange" value="1">Day</option>
                                 <option name="filterRange" value="2">Month</option>
                                 </select>
-                                </div>
+                                </div> -->
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                 <label>Customer Status</label>
                                 <select name="filter" class="form-control">
                                 <option selected name="filterType" value="1">All</option>
@@ -41,7 +41,7 @@
                                 <option name="filterType" value="2">Missed</option>
                                 <option name="filterType" value="2">Pending</option>
                                 </select>
-                                </div>
+                                </div> -->
 
     <form method="get" action="{{'report'}}">
  <input type="hidden" name="_token" value="{{ csrf_token() }}">

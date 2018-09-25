@@ -52,4 +52,6 @@
 </div>
 <!-- customer report -->
 
+
+
 @include('layouts.bottomreport')
