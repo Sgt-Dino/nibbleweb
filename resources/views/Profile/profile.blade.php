@@ -195,7 +195,7 @@
 
     $('.timepicker').datetimepicker({
 
-        format: 'HH:mm:ss'
+        format: 'HH:mm'
 
     }); 
 
