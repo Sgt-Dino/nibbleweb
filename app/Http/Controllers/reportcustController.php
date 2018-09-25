@@ -17,37 +17,39 @@ class reportcustController extends Controller
 
     public function index()
     {
+        $userId = Auth::id();
+        $status = "All";
         $cust=DB::table('bookingrequest')
             ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
-            ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
-            ->where('bookingrequest.status', '=' , 'P')
+            ->select('bookingrequest.status', 'bookingrequest.numofguests', 'bookingrequest.date','customer.firstname')
+            ->where('bookingrequest.restaurantid', '=' ,$userId)
             ->orderby('bookingrequest.date')
             //->limit(10)
             ->get();
-        return view('reports.customer.pendingCustomer',['cust' =>$cust]);
+        return view('reports.customer.pendingCustomer',compact('cust','status'));
     }
 
-    public function statDecline()
-    {
-        $missed=DB::table('bookingrequest')
-            ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
-            ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
-            ->where('bookingrequest.status', '=' , 'M')
-            ->orderby('bookingrequest.date')
-            ->get();
-        return view('reports.customer.customermissed',['missed' =>$missed]);
-    }
+    // public function statDecline()
+    // {
+    //     $missed=DB::table('bookingrequest')
+    //         ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
+    //         ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
+    //         ->where('bookingrequest.status', '=' , 'M')
+    //         ->orderby('bookingrequest.date')
+    //         ->get();
+    //     return view('reports.customer.customermissed',['missed' =>$missed]);
+    // }
 
-    public function statCheckedin()
-    {
-        $check=DB::table('bookingrequest')
-            ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
-            ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
-            ->where('bookingrequest.status', '=' , 'C')
-            ->orderby('bookingrequest.date')
-            ->get();
-        return view('reports.customer.customercheckedin',['check' =>$check]);
-    }
+    // public function statCheckedin()
+    // {
+    //     $check=DB::table('bookingrequest')
+    //         ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
+    //         ->select('bookingrequest.status', 'bookingrequest.date','customer.firstname')
+    //         ->where('bookingrequest.status', '=' , 'C')
+    //         ->orderby('bookingrequest.date')
+    //         ->get();
+    //     return view('reports.customer.customercheckedin',['check' =>$check]);
+    // }
 
     public function loadpdf($cust)
     {
@@ -83,5 +85,21 @@ class reportcustController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function statuschange($id)
+    {
+        $userId = Auth::id();
+        $cust=DB::table('bookingrequest')
+            ->join('customer', 'bookingrequest.customerid', '=', 'customer.customerid')
+            ->select('bookingrequest.status', 'bookingrequest.numofguests', 'bookingrequest.date','customer.firstname')
+            ->where('bookingrequest.status', '=' , $id)
+            ->where('bookingrequest.restaurantid', '=' ,$userId)
+            ->orderby('bookingrequest.date')
+            //->limit(10)
+            ->get();
+            $status = $id;
+        return view('reports.customer.pendingCustomer',compact('cust','status'));
+
     }
 }
