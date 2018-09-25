@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Reviews</h1>
+<br>
 <!-- reviews report -->
 <div class="container">
     <div class="row">

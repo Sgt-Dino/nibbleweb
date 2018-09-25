@@ -1,5 +1,6 @@
 @include('layouts.top')
-
+<h1>Status Report</h1>
+<br>
 <!-- customer report -->
 <div class="container">
     <div class="row">

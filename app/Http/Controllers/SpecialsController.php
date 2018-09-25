@@ -29,7 +29,22 @@ class SpecialsController extends Controller
      */
     public function index()
     {
-        return view('menu.specials');
+        $userId = Auth::id();
+        $special= DB::table('special')
+            ->select('*')
+            ->where('special.restaurantid','=',$userId)
+            ->where('special.active','=','Y')
+            ->orderby('special.itemname')
+            ->get();
+        return view('menu.specials',compact('special'));
+    }
+
+    public function updateRemove(Request $request, $id)
+    {
+        $special = Specials::findOrFail($id);
+        $special->active = 'N';
+        $special->save();
+        return redirect('/specials')->with('message','Category has been successfully removed');       
     }
 
     /**
