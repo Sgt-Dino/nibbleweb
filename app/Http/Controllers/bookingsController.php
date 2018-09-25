@@ -23,13 +23,17 @@ class bookingsController extends Controller
     }
     
     public function index()
-    {        
+    {      
+        $today = date("Y-m-d"); 
+        //$nextweek = date("Y-m-d")->addDays(7);
+        $nextweek = date("Y-m-d", strtotime("+1 week"));
         $userId = Auth::id();
         $bookingVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
             ->where('bookingrequest.accepted','=','P')
+            ->where('bookingrequest.status','<>','N')
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
@@ -37,7 +41,8 @@ class bookingsController extends Controller
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->where('bookingrequest.accepted','=','D')
+            ->where('bookingrequest.accepted','=','N')
+            ->wherebetween('date', [$today, $nextweek])
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
@@ -45,7 +50,8 @@ class bookingsController extends Controller
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
             ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
             ->where('bookingrequest.restaurantid','=',$userId)
-            ->where('bookingrequest.accepted','=','A')
+            ->where('bookingrequest.accepted','=','Y')
+            ->wherebetween('date', [$today, $nextweek])
             ->ORDERBY('bookingrequest.date', 'ASC')
             ->orderby('bookingrequest.time', 'ASC')
             ->get();
@@ -114,15 +120,16 @@ class bookingsController extends Controller
     public function updateA(BookingRequest $request, $id)
     {
         $bookingVar = Bookings::findOrFail($id);
-        $bookingVar->accepted = 'A';
+        $bookingVar->accepted = 'Y';
         $bookingVar->status = $bookingVar->status;      
         $bookingVar->save();
         return redirect('/booking')->with('message','Booking Request has been accepted');
     }
     public function updateD(BookingRequest $request, $id)
     {
+        
         $bookingVar = Bookings::findOrFail($id);
-        $bookingVar->accepted = 'D';
+        $bookingVar->accepted = 'N';
         $bookingVar->status = $bookingVar->status;       
         $bookingVar->save();
         return redirect('/booking')->with('message','Booking Request has been declined successfully');

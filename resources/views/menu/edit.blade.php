@@ -45,7 +45,7 @@
     <div class="form-group">
       <label>Cost</label>
       <div>
-      <input required type="number" name="itemprice" class="form-control" value={{$food->itemprice}}>
+      <input required type="number" step=".01" name="itemprice" class="form-control" value={{$food->itemprice}}>
       </div>
     </div>
 
@@ -77,7 +77,10 @@ $(document).ready(function () {
 $(".dropdown-menu li a").click(function(){ 
     $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).text()));
 });
+
 });
 </script>
+
+
 
 @include('layouts.bottom')

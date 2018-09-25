@@ -23,7 +23,7 @@
          $( "#calendar2" ).datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
-         });               
+         });                 
     });
 </script>
 

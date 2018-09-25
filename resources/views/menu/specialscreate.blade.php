@@ -27,7 +27,7 @@
 
                              <div class="form-group">
                                 {!! Form::label('itemprice','Add Cost') !!}
-                                {!! Form::number('itemprice',null,['required','class'=>'form-control']) !!}
+                                {!! Form::number('itemprice',null,['required','step=".01"','class'=>'form-control']) !!}
                             </div>
 
                                                  
