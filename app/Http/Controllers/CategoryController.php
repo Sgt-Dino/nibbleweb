@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Input;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,33 +21,24 @@ class CategoryController extends Controller
             ->select('*')
             ->where('menucategory.restaurantid','=',$userId)
             ->where('menucategory.active','=','Y')
+            ->orderby('menucategory.name')
             ->get();
         $deleted= DB::table('menucategory')
             ->select('*')
             ->where('menucategory.restaurantid','=',$userId)
             ->where('menucategory.active','=','N')
+            ->orderby('menucategory.name')
             ->get();
          //$category = Category::all();
          return view('menu.category',compact('category','deleted'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //Create a new category
         return view('menu.categorycreate');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     //Save category
     public function store(Request $request)
     {

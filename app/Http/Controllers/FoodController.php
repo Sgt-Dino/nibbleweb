@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests\FoodRequest;
 class FoodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -34,6 +30,7 @@ class FoodController extends Controller
          ->from('menuitem','menucategory')
          ->where('menucategory.restaurantid','=',$userId)
          ->where('menuitem.active','=','Y')
+         ->orderby('menuitem.itemname')
          ->get();
 
          $categories = Category::all()->where('restaurantid','=',$userId);
@@ -51,11 +48,6 @@ class FoodController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $userId = Auth::id();
@@ -63,12 +55,6 @@ class FoodController extends Controller
         return view('menu.create',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(FoodRequest $request)
     {
         $userId = Auth::id();
@@ -76,23 +62,11 @@ class FoodController extends Controller
         return redirect('/food')->with('message','Food has been succesfully added to the menu');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Food $food)
     {
         return view('menu.show',compact('food'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $userId = Auth::id();
@@ -101,13 +75,6 @@ class FoodController extends Controller
         return view('menu.edit',compact('food','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(FoodRequest $request, $id)
     {
 
@@ -120,13 +87,6 @@ class FoodController extends Controller
         return redirect('/food')->with('message','Item has been updated successfully');
         
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     //Delete an item for real
     public function destroy(Food $id)

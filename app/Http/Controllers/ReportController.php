@@ -53,12 +53,6 @@ class ReportController extends Controller
         return view('chart',compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $start = $request->startdate;
@@ -80,12 +74,6 @@ class ReportController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function report(Request $request)
     {
        
@@ -109,41 +97,21 @@ class ReportController extends Controller
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
             ->wherebetween('date', [$startdate, $enddate])
-            ->orderby('bookingrequest.status')
+            ->orderby('bookingrequest.status', 'bookingrequest.date')
             ->get();
         return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

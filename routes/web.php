@@ -22,8 +22,6 @@ Route::get('/test', function () {
 
 
 Route::get('/report',['as' => 'reports.status.report','uses'=> 'ReportController@report']);
-Route::get('customermissed', 'reportcustController@statDecline');
-Route::get('customercheckedin', 'reportcustController@statCheckedin');
 Route::get('/edit/{id}',['as' => 'menu.food.edit','uses'=> 'FoodController@edit']);
 Route::get('/categoryedit/{id}',['as' => 'menu.category.edit','uses'=> 'CategoryController@edit']);
 Route::get('/pdf', ['as' =>'report.pdf', 'uses'=> 'ReportController@fun_pdf']);
@@ -33,6 +31,7 @@ Route::get('/customerpdf', ['as' =>'customerReport.pdf', 'uses'=> 'reportcustCon
 Route::get('google-piechart', array('as' => 'chart.piechart', 'uses' => 'ReportController@piechart'));
 Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
 Route::get('/statuschange/{id}',['as' => 'reports.statuschange','uses'=> 'reportCustController@statuschange']);
+Route::get('/ratingchange/{id}',['as' => 'reports.ratingchange','uses'=> 'reportreviewController@ratingchange']);
 
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);

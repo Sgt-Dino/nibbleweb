@@ -19,11 +19,15 @@ class reportreviewController extends Controller
 
     public function index()
     {
+        $userId = Auth::id();
+        $rating ="All";
         $reviews= DB::table('review')
+            ->join('restaurant', 'restaurant.restaurantid', '=', 'review.restaurantid')
             ->select('review.rating', 'review.date', 'review.comment')
+            ->where('review.restaurantid', '=', $userId)
             ->orderby('review.rating', 'review.date')
             ->get();
-        return view('reports.reviews', ['reviews'=>$reviews]);
+        return view('reports.reviews', compact('reviews', 'rating'));
     }
 
     public function fun_pdf($reviews)
@@ -60,5 +64,19 @@ class reportreviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ratingchange($id)
+    {
+        $userId = Auth::id();
+        $reviews= DB::table('review')
+            ->join('restaurant', 'restaurant.restaurantid', '=', 'review.restaurantid')
+            ->select('review.rating', 'review.date', 'review.comment')
+            ->where('review.rating', '=', $id)
+            ->where('review.restaurantid', '=', $userId)
+            ->orderby('review.rating', 'review.date')
+            ->get();
+            $rating =$id;
+        return view('reports.reviews', compact('reviews', 'rating'));
     }
 }
