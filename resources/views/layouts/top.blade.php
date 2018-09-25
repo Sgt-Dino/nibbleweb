@@ -63,8 +63,8 @@
                             Reports
                         </a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li><a href={{url ('customerreport')}}>Customer reports</a></li>
-                            <li><a href={{ url('reportbymonth')}}>Status Reports</a></li>
+                            <li><a href={{url ('customerreport')}}>Status Reports</a></li>
+                            <li><a href={{ url('reportbymonth')}}>Reports By Date Range</a></li>
                             <li><a href={{ url('reviewreport')}}>Review Reports</a></li>
                         </ul>
                     </li>
