@@ -22,16 +22,31 @@
 
                              <div class="form-group">
                                 {!! Form::label('itemdescription','Add Special Description') !!}
-                                {!! Form::text('itemdescription',null,['required','class'=>'form-control']) !!}
+                                {!! Form::text('Description',null,['required','class'=>'form-control']) !!}
                             </div>                       
 
                              <div class="form-group">
                                 {!! Form::label('itemprice','Add Cost') !!}
-                                {!! Form::number('itemprice',null,['required','step=".01"','class'=>'form-control']) !!}
+                                {!! Form::number('cost',null,['required','step=".01"','class'=>'form-control']) !!}
                             </div>
 
-                                                 
-                        {!! Form::close() !!}
+                            <br>
+                             <div class="form-group">
+                             
+                                {!! Form::label('days','On which days will the special run') !!}
+                                <br>
+                                <label class="checkbox-inline">{{ Form::checkbox('monday', '1') }}Mondays</label>
+                                <label class="checkbox-inline">{{ Form::checkbox('tuesday', '1') }}Tuesdays</label>
+                                <label class="checkbox-inline">{{ Form::checkbox('wednesday', '1') }}Wednesdays</label>   
+                                <label class="checkbox-inline">{{ Form::checkbox('thursday', '1') }}Thursdays</label>
+                                <label class="checkbox-inline">{{ Form::checkbox('friday', '1') }}Fridays</label>
+                                <label class="checkbox-inline">{{ Form::checkbox('saterday', '1') }}Saterdays</label> 
+                                <label class="checkbox-inline">{{ Form::checkbox('sunday', '1') }}Sundays</label>
+                                <br>            
+                            </div>        
+
+                          
+
 
 <br>
 <table>

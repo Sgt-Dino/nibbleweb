@@ -11,5 +11,5 @@ class Bookings extends Model
     protected $table = "specialday";
     public $timestamps = false;
     protected $fillable = ['dayid', 'specialid'];
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'specialdayid';
 }
