@@ -26,7 +26,10 @@
 
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Accept Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been accepted, a notification will be sent to the customer. When the day comes of that specific booking request, the booking will appear on the home screen.">Accept</th>
                         <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Decline Booking Requests" data-content="When a customer makes a booking request, the request is sent to the restaurant. The restaurant now has the option to accept/ decline the request. If the request has been declined, a notification will be sent to the customer. Declined requests are displayed below.">Decline</th>
+<<<<<<< HEAD
              
+=======
+>>>>>>> 2f4d58e77cb15d01508b959d8ecb1e463b8b57fc
                     </tr>
                     <?php $count = 0; ?>
                     @foreach($bookingVar as $Bookings) 
@@ -73,7 +76,10 @@
                             @endif
                             @endif                         
                         </td>
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 2f4d58e77cb15d01508b959d8ecb1e463b8b57fc
                     </tr>
                     @endforeach
                     </table>

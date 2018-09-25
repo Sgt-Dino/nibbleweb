@@ -18,7 +18,7 @@ class bookingsController extends Controller
     }
     
     public function index()
-    {      
+    {
         $today = date("Y-m-d"); 
         //$nextweek = date("Y-m-d")->addDays(7);
         $nextweek = date("Y-m-d", strtotime("+1 week"));
