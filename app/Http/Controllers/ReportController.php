@@ -88,7 +88,7 @@ class ReportController extends Controller
                 ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
                 ->where('bookingrequest.restaurantid','=',$userId)
                 ->wherebetween('date', [Carbon::parse($request->calendar1), Carbon::parse($request->calendar2)])
-                ->orderby('bookingrequest.status')
+                ->orderby('bookingrequest.status', 'bookingrequest.date')
                 ->get();
             return view('reports.status.bookingBM',compact('statusBM','from','to'));
         }

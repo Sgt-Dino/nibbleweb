@@ -14,7 +14,7 @@
                 <div class="panel-heading">Your Pending Booking Requests</div>
                 <div class="panel-body">
                 @if (!$bookingVar->first()) 
-                <h3>No Pending booking requests</h3>                      
+                <h3 align="center">No Pending booking requests</h3>
                 @else
                     <table class="table table-hover table-striped">
                     <tr>
@@ -89,7 +89,7 @@
                 <div class="panel-heading">Your Declined Booking Requests for this week</div>
                 <div class="panel-body">
                 @if (!$bookingD->first()) 
-                <h3>No Declined Booking Requests for this week</h3>                      
+                <h3 align="center">No Declined Booking Requests for this week</h3>
                 @else
                     <table class="table table-hover table-striped">
                     <tr>
@@ -145,7 +145,7 @@
                 <div class="panel-heading">Your Accepted Booking Requests for this week</div>
                 <div class="panel-body">
                 @if (!$bookingA->first()) 
-                <h3>No Accepted Booking Requests for this week</h3>                      
+                <h3 align="center">No Accepted Booking Requests for this week</h3>
                 @else
                     <table class="table table-hover table-striped">
                     <tr>
