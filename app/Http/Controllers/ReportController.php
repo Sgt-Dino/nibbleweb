@@ -22,13 +22,16 @@ class ReportController extends Controller
     public function index()
     {
         //MUST UNDO!!!
+        $from = "";
+        $to = "";
+        
         $userId = Auth::id();
         $statusBM= DB::table('bookingrequest')
             ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
             ->where('bookingrequest.restaurantid','=',$userId)
             ->orderby('bookingrequest.status', 'bookingrequest.date')
             ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+        return view('reports.status.bookingBM',compact('statusBM','from','to'));
     }
 
     public function fun_pdf()
@@ -88,30 +91,28 @@ class ReportController extends Controller
      */
     public function report(Request $request)
     {
-       
-        $userId = Auth::id();
-        $statusBM= DB::table('bookingrequest')
-            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
-            ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', [Carbon::parse($request->calendar1), Carbon::parse($request->calendar2)])
-            ->orderby('bookingrequest.status')
-            ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+        $from = Carbon::parse($request->calendar1);
+        $to = Carbon::parse($request->calendar2);
+        if ($from < $to)
+        {
+            $userId = Auth::id();
+            $statusBM= DB::table('bookingrequest')
+                ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
+                ->where('bookingrequest.restaurantid','=',$userId)
+                ->wherebetween('date', [Carbon::parse($request->calendar1), Carbon::parse($request->calendar2)])
+                ->orderby('bookingrequest.status')
+                ->get();
+            return view('reports.status.bookingBM',compact('statusBM','from','to'));
+        }
+        else{
+            return redirect('/reportbymonth')->with('message','Select a valid date range');
+        }
+        
     }
 
     public function show($reportbymonth)
     {
-        $startdate = $request->startdate;
-        $enddate = $request->enddate;
-
-        $userId = Auth::id();
-        $statusBM= DB::table('bookingrequest')
-            ->select('bookingrequest.status', 'bookingrequest.date', 'bookingrequest.time', 'bookingrequest.numofguests', 'bookingrequest.customerid')
-            ->where('bookingrequest.restaurantid','=',$userId)
-            ->wherebetween('date', [$startdate, $enddate])
-            ->orderby('bookingrequest.status')
-            ->get();
-        return view('reports.status.bookingBM', ['statusBM'=>$statusBM]);
+//
     }
 
 

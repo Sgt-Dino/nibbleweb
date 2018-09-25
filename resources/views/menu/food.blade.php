@@ -56,7 +56,7 @@
                     @if (!$foods->first()) 
                     <H3>No Food in menu or this category</h3>                      
                     @else
-                        <table class="table table-striped table-bordered" id="example">
+                        <table class="table table-hover table-striped" name="example" id="example">
                             <tr>
                                 <th>Name</th>
                                 <th>Category</th>
@@ -118,10 +118,8 @@
 <!-- food -->
 
 
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+<script type="text/javascript">
+
 </script>
 
 @include('layouts.bottomreport')

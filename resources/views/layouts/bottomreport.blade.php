@@ -19,6 +19,8 @@
                     $("#itemlist").removeClass("active");
                     $(e.target).addClass("active");
                     });
+                    
+                    $('#example').DataTable();
              });
          </script>
          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH5nbLi84BB3QcgwUe-0lMgQZon2C_sB4&callback=myMap"></script>

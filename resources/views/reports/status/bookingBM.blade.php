@@ -14,6 +14,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+            @if(Session::has('message'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('message') }}
+                        </div>
+                @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">Status Report by Month</div>
                     <div class="panel-body">
@@ -33,6 +38,7 @@
                                 <option selected name="filterType" value="1">All</option>
                                 <option name="filterType" value="2">Checked-In</option>
                                 <option name="filterType" value="2">Missed</option>
+                                <option name="filterType" value="2">Pending</option>
                                 </select>
                                 </div>
 
@@ -52,8 +58,14 @@
                         var enddate = $( "#calendar1" ).datepicker( "getDate" );
                     });
                 </script>
+<br>
+
+                    <table>
+                    <tr>
+                    <col width="250">
+                    <td>
                             <div class="form-group">
-                            <label>Date From</label>
+                            <label>Start Date:</label>
                             <div class='input-group'>
 						  <div>
 							<input required type="text" id="calendar1" name="calendar1" class="form-control" value="" placeholder="Start Date">
@@ -61,23 +73,37 @@
                           </div>
                           </div>
 
+                    </td>
+                    <td>
+                    </td><td>
+
                           <div class="form-group">
-                            <label>Date To</label>
+                            <label>End Date:</label>
                             <div class='input-group'>
 						  <div>
 							<input required type="text" id="calendar2" name="calendar2" class="form-control" value="" placeholder="End Date">
 						  </div>
                           </div>
                           </div>
+                    </td>
+                    </tr>
+                    </table>
 
                           <button class="btn btn-primary" type="submit">Generate Report</button>
                 </form>
                 <br>
+                <br>
 
 <!-- Date Picker -->
-
+<div>
+@if($from == "")
+<h4>Booking Requests</h4>
+@else
+<h4>Booking Requests from <?php echo date_format($from, 'Y-m-d') ?> to <?php echo date_format($to, 'Y-m-d') ?> </h4>
+@endif
+</div><br>
                         <table class="table table-hover table-striped">
-
+                        
                             <th class="text-center">Status</th>
                             <th class="text-left">Date</th>
                             <th class="text-left">Time</th>
