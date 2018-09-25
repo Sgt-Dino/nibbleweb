@@ -17,10 +17,10 @@
 <h4>Status: Checked-In</h4>
 @endif
 <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'P']) }}">Pending</a></li>
-                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'M']) }}">Missed</a></li>
-                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'C']) }}">Checked-in</a></li>
+                        <ul class="pagination">                  
+                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'P']) }}">Pendings</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'M']) }}">Misseds</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ route('reports.statuschange',['id' => 'C']) }}">Checked-ins</a></li>
                         </ul>
                     </nav>
                     <table class="table table-hover table-striped">

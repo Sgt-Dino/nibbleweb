@@ -39,7 +39,7 @@
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="PATCH">
                             <input name="active" type="hidden" value="N">
-                            <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete category">DELETE</button>
+                            <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete category">Delete</button>
                             </form>
                             @if ( count( $errors ) > 0 )
                             <ul class="aler alert-danger">

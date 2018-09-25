@@ -1,4 +1,11 @@
 @include('layouts.top')
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"   src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <h1>Food</h1>
 <br>
 <!-- menu -->
@@ -49,11 +56,11 @@
                     @if (!$foods->first()) 
                     <H3>No Food in menu or this category</h3>                      
                     @else
-                        <table class="table table-hover table-striped">
+                        <table class="table table-striped table-bordered" id="example">
                             <tr>
                                 <th>Name</th>
                                 <th>Category</th>
-                                <th>Price</th>
+                                <th class="text-right">Price</th>
                                 <!--Popover-->
                                 <th class="text-center" data-toggle="popover"  appendToBody="true" data-placement="top" title="Edit/Update Food" data-content="A specific food item can be edited or updated. Click on the 'edit' button for the specific food item you want to update.">Update</th>
                                 <th class="text-center" data-toggle="popover" appendToBody="true" data-placement="top" title="Delete Food" data-content="A specific food item can be deleted. Click on the 'delete' button for the specific food item you want to delete."> Delete</th>
@@ -68,7 +75,7 @@
                                     <td>{{$cat->name}}</td>
                                     @endif
                                     @endforeach
-                                    <td>R{{$food->itemprice}}</td>                                  
+                                    <td align="right">R {{number_format($food->itemprice,2)}}</td>                                  
                                     <td align="center">
                                     <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit food">Edit</button></a>
                                     </td>
@@ -80,7 +87,7 @@
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="PATCH">
                                         <input name="active" type="hidden" value="N">
-                                        <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete item">DELETE</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" rel="tooltip" title="Delete item">Delete</button>
                                         </form>
                                         @if ( count( $errors ) > 0 )
                                         <ul class="aler alert-danger">
@@ -111,4 +118,10 @@
 <!-- food -->
 
 
-@include('layouts.bottom')
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+@include('layouts.bottomreport')
