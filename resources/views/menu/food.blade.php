@@ -68,7 +68,7 @@
                                     <td>{{$cat->name}}</td>
                                     @endif
                                     @endforeach
-                                    <td>{{$food->itemprice}}</td>                                  
+                                    <td>R{{$food->itemprice}}</td>                                  
                                     <td align="center">
                                     <a href="{{ route('menu.food.edit',Crypt::encrypt($food->menuitemid)) }}"><button class="btn btn-sm btn-primary" rel="tooltip" title="Edit food">Edit</button></a>
                                     </td>
