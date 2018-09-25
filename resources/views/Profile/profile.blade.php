@@ -1,4 +1,12 @@
 @include('layouts.top')
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <h1>Profile</h1>
 <br>
 <!-- Profile -->          
@@ -84,6 +92,14 @@
 						  <label>Website</label>
 						  <div>
 						  <input type="text"  name="websiteurl" class="form-control" value="{{$prof->websiteurl}}">
+						  </div>
+						  </div>
+                          </br>
+
+                          <div class="form-group">
+						  <label>Time</label>
+						  <div>
+						  <input type="text" id="timepicker" name="timepicker" class="timepicker form-control" value="">
 						  </div>
 						  </div>
                           </br>
@@ -175,4 +191,13 @@
         </div>
     </div><!-- upload logo -->  
     
+    <script type="text/javascript">
+
+    $('.timepicker').datetimepicker({
+
+        format: 'HH:mm:ss'
+
+    }); 
+
+</script>  
 @include('layouts.bottom')

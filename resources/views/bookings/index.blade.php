@@ -39,8 +39,8 @@
                             <form method="post" action="{{ route('bookings.index.updateA', ['id' => $Bookings->bookingrequestid]) }}">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="PATCH">
-                            <input name="accepted" type="hidden" value="A">
-                            <input name="status" type="hidden" value="A">
+                            <input name="accepted" type="hidden" value="Y">
+                            <input name="status" type="hidden" value="Y">
                             <button type ='submit' name='AcceptRequest' class="btn btn-sm btn-success" rel="tooltip" title="Accept booking request">Accept</button>
                             </form>
                             @if ( count( $errors ) > 0 )
@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Declined Booking Requests for this week</div>
+                <div class="panel-heading">Your Declined Booking Requests for this week</div>
                 <div class="panel-body">
                 @if (!$bookingD->first()) 
                 <h3>No Declined Booking Requests for this week</h3>                      
@@ -113,8 +113,8 @@
                             <form method="post" action="{{ route('bookings.index.updateA', ['id' => $Bookings->bookingrequestid]) }}">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="PATCH">
-                            <input name="accepted" type="hidden" value="A">
-                            <input name="status" type="hidden" value="A">
+                            <input name="accepted" type="hidden" value="N">
+                            <input name="status" type="hidden" value="N">
                             <button type ='submit' name='AcceptRequest' class="btn btn-sm btn-success">Accept</button>
                             </form>
                             {!! Form::close() !!}
@@ -142,7 +142,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Accepted Booking Requests for this week</div>
+                <div class="panel-heading">Your Accepted Booking Requests for this week</div>
                 <div class="panel-body">
                 @if (!$bookingA->first()) 
                 <h3>No Accepted Booking Requests for this week</h3>                      

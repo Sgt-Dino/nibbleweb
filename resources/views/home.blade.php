@@ -105,10 +105,10 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                Canceled Bookings for Today
+                Customers' Canceled Bookings for Today
                 </div>
                 <div class="panel-body">
-                @if (!$bookingTodayVar->first()) 
+                @if (!$bookingsCanceled->first()) 
                     <h3 align="center">No Canceled Bookings for today</h3>                      
                 @else
                     <table class="table table-hover table-striped">
