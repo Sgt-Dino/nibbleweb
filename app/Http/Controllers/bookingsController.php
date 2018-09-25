@@ -25,7 +25,7 @@ class bookingsController extends Controller
         $userId = Auth::id();
         $bookingVar= DB::table('bookingrequest')
             ->join('customer', 'customer.customerid', '=', 'bookingrequest.customerid')
-            ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted')
+            ->select('bookingrequest.bookingrequestid','bookingrequest.date','bookingrequest.time','customer.firstname', 'customer.phone', 'bookingrequest.numofguests', 'bookingrequest.status','bookingrequest.accepted', 'bookingrequest.comment')
             ->where('bookingrequest.restaurantid','=',$userId)
             ->where('bookingrequest.accepted','=','P')
             ->where('bookingrequest.status','<>','N')
