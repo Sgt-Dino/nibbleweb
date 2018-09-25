@@ -12,13 +12,13 @@
 
                         {!! Form::open(array('route'=>'food.store')) !!}
                             <div class="form-group">
-                                {!! Form::label('itemname','Add Food Name') !!}
-                                {!! Form::text('itemname',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('itemname','Item Name') !!}
+                                {!! Form::text('itemname',null,['required','class'=>'form-control','placeholder'=>'Add the item name here', 'maxlength'=>'30']) !!}
                             </div>
 
                              <div class="form-group">
-                                {!! Form::label('itemdescription','Add Item Description') !!}
-                                {!! Form::text('itemdescription',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('itemdescription','Item Description') !!}
+                                {!! Form::text('itemdescription',null,['required','class'=>'form-control','placeholder'=>'Describe the item here', 'maxlength'=>'100']) !!}
                             </div>                       
 
                             <div class="form-group">
@@ -32,8 +32,8 @@
                             </br>
 
                              <div class="form-group">
-                                {!! Form::label('itemprice','Add Cost') !!}
-                                {!! Form::number('itemprice',null,['required','step=".01"','class'=>'form-control']) !!}
+                                {!! Form::label('itemprice','Price') !!}
+                                {!! Form::number('itemprice',null,['required','step=".01"','class'=>'form-control','placeholder'=>'Enter Price']) !!}
                             </div>
 
                             <div class="form-group">

@@ -16,6 +16,9 @@
                     <div class="panel-heading">Menu Categories</div>
 
                     <div class="panel-body">
+                    <div>
+                    {{ link_to_route('category.create','Add new Category',null,['class'=>'btn btn-success']) }}
+                    </div><br>
                         <table class="table table-hover table-striped">
                             <tr>
                                 <th>Name</th>
@@ -53,7 +56,7 @@
                                 </tr>
                             @endforeach
                         </table>
-                        {{ link_to_route('category.create','Add new Category',null,['class'=>'btn btn-success']) }}
+                        
                     </div>
                 </div>
             </div>

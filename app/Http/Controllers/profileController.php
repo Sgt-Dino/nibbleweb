@@ -53,11 +53,16 @@ class ProfileController extends Controller
         $profile->restaurantname = $request->get('restaurantname');
         $profile->phone = $request->get('phone');
         $profile->restauranttype = $request->get('restauranttype');
-        $profile->gpslocation = $request->get('gpslocation');
+        if($request->get('gpslocation') <> "")
+        {
+            $profile->gpslocation = $request->get('gpslocation');
+        }
         $profile->email = $request->get('email');
         $profile->suburbid = $request->get('suburbid');
         $profile->addressline1 = $request->get('addressline1');
         $profile->addressline2 = $request->get('addressline2');
+        $profile->opentime = $request->get('opentime');
+        $profile->closetime = $request->get('closetime');
         $profile->websiteurl = $request->get('websiteurl');
         $profile->save();
         return redirect('/profile')->with('message','item has been updated successfully');

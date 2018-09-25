@@ -74,7 +74,7 @@
 						  </div>
 						  </br>
                           
-                          <div class="form-group">
+                            <div class="form-group">
                                 <label>Suburb</label>
                                 <select name="suburbid" class="form-control">
                                 @foreach($subs as $suburb)
@@ -85,22 +85,30 @@
                                 @endif
                                 @endforeach
                                 </select>  
-                                </div>                       
+                            </div>                       
                             </br>
                           						  
-                            <div class="form-group">
+                          <div class="form-group">
 						  <label>Website</label>
-						  <div>
-						  <input type="text"  name="websiteurl" class="form-control" value="{{$prof->websiteurl}}">
-						  </div>
+                            <div>
+                            <input type="text"  name="websiteurl" class="form-control" value="{{$prof->websiteurl}}">
+                            </div>
 						  </div>
                           </br>
 
                           <div class="form-group">
-						  <label>Time</label>
-						  <div>
-						  <input type="text" id="timepicker" name="timepicker" class="timepicker form-control" value="">
+						  <label>Open Time:</label>
+                            <div>
+                            <input type="text" id="timepicker" name="opentime" class="timepicker form-control" value="{{$prof->opentime}}">
+                            </div>
 						  </div>
+                          </br>
+
+                          <div class="form-group">
+                          <label>Close Time:</label>
+                            <div>
+                            <input type="text" id="timepicker" name="closetime" class="timepicker form-control" value="{{$prof->closetime}}">
+                            </div>
 						  </div>
                           </br>
                           
@@ -108,7 +116,7 @@
                         @endforeach
                         @endif
 							<div class="form-group">
-							<div></div>
+							    <div></div>
 							<button type="submit" class="btn btn-primary" rel="tooltip" title="Update profile">Update</button>
 							</div>
 							</form>
@@ -155,7 +163,7 @@
                         if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(showPosition);
                         } else { 
-                        x.innerHTML = "Geolocation is not supported by this browser.";
+                        x.innerHTML = "Geolocation is not supported.";
                         }
                         }
 

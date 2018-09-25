@@ -12,27 +12,32 @@
             <div class="panel panel-default">
                     <div class="panel-heading">Create Special</div>
                 <div class="panel-body">
-
+                <?php 
+			        $restaurantadminid = Auth::id();				            
+                ?> 
 {!! Form::open(array('route'=>'specials.store')) !!}
 
                             <div class="form-group">
-                                {!! Form::label('itemname','Add Special Name') !!}
-                                {!! Form::text('itemname',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('itemname','Special Name') !!}
+                                {!! Form::text('itemname',null,['required','class'=>'form-control','placeholder'=>'Add the special name here','maxlength'=>'30']) !!}
                             </div>                    
 
                              <div class="form-group">
-                                {!! Form::label('itemdescription','Add Special Description') !!}
-                                {!! Form::text('Description',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('itemdescription','Special Description') !!}
+                                {!! Form::text('description',null,['required','class'=>'form-control','placeholder'=>'Describe special here', 'maxlength'=>'100']) !!}
                             </div>                       
 
                              <div class="form-group">
-                                {!! Form::label('itemprice','Add Cost') !!}
+                                {!! Form::label('itemprice','Price') !!}
                                 {!! Form::number('cost',null,['required','step=".01"','class'=>'form-control']) !!}
                             </div>
-
+                             
                             <br>
                              <div class="form-group">
-                             
+                             {!! Form::hidden('active', 'Y') !!}
+                             {!! Form::hidden('restaurantid', $restaurantadminid) !!}
+                             {!! Form::hidden('specificday', 'S') !!}
+
                                 {!! Form::label('days','On which days will the special run') !!}
                                 <br>
                                 <label class="checkbox-inline">{{ Form::checkbox('monday', '1') }}Mondays</label>

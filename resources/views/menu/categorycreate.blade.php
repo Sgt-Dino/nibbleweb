@@ -12,13 +12,13 @@
 
                         {!! Form::open(array('route'=>'category.store')) !!}
                             <div class="form-group">
-                                {!! Form::label('name','Add category Name') !!}
-                                {!! Form::text('name',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('name','Category Name') !!}
+                                {!! Form::text('name',null,['required','class'=>'form-control','placeholder'=>'Add category name here', 'maxlength'=>'30']) !!}
                             </div>                    
 
                              <div class="form-group">
-                                {!! Form::label('description','Add Category Description') !!}
-                                {!! Form::text('description',null,['required','class'=>'form-control']) !!}
+                                {!! Form::label('description','Category Description') !!}
+                                {!! Form::text('description',null,['required','class'=>'form-control','placeholder'=>'Describe the category here', 'maxlength'=>'100']) !!}
                             </div>
 
                                 <?php
