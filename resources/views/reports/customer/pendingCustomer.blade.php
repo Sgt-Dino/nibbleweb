@@ -40,7 +40,16 @@
                             @endforeach
                         </table>
                             <table>
-                                <th align="right">Amount pending: &nbsp {{$key + 1}}</th>
+                            @if($status == "All")
+                            <th align="right">Total: &nbsp {{$key + 1}}</th>
+                            @elseif($status == "P")
+                            <th align="right">Amount pending: &nbsp {{$key + 1}}</th>
+                            @elseif($status == "M")
+                            <th align="right">Amount missed: &nbsp {{$key + 1}}</th>
+                            @elseif($status == "C")
+                            <th align="right">Amount checked-in: &nbsp {{$key + 1}}</th>
+                            @endif
+                                
                             </table>
                     @endif
                     <hr>
