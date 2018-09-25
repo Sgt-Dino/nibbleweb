@@ -32,7 +32,7 @@ Route::get('/customerpdf', ['as' =>'customerReport.pdf', 'uses'=> 'reportcustCon
 //Route::get('/statuschart', ['uses' =>'ReportController@createchart', 'as' => 'reports.status.chart']);
 Route::get('google-piechart', array('as' => 'chart.piechart', 'uses' => 'ReportController@piechart'));
 Route::get('/cat/{id}',['as' => 'menu.food.cat','uses'=> 'FoodController@catchange']);
-
+Route::get('/statuschange/{id}',['as' => 'reports.statuschange','uses'=> 'reportCustController@statuschange']);
 
 Route::delete('/delete/{id}', ['uses' => 'FoodController@destroy', 'as' => 'menu.food.destroy']);
 Route::patch('/update/{id}', ['uses' => 'FoodController@update', 'as' => 'menu.food.update']);
